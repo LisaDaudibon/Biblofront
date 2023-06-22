@@ -9,7 +9,7 @@ function SignupForm () {
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
-  const [password_confirmation, setPassword_Confirmation] = useState('');
+  // const [password_confirmation, setPassword_Confirmation] = useState('');
   const [admin, setAdmin] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -46,7 +46,7 @@ function SignupForm () {
           id: data.user.id,
           email: data.user.email,
           pseudo: data.user.pseudo,
-          admin: data.user.admin,
+          // admin: data.user.admin,
           token: data.user.token,
           isLoggedIn: true,
         });
@@ -110,12 +110,12 @@ function SignupForm () {
       </div>
       <br></br>
       {/* <div>
-        <label htmlFor="password">Mot de passe :   </label>
+        <label htmlFor="admin">Admin ?   </label>
         <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="checkbox"
+          id="admin"
+          value={admin}
+          onChange={(e) => setAdmin(e.target.value)}
           required
         />
       </div>
