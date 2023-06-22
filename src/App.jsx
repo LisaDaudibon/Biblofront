@@ -6,6 +6,7 @@ import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
+import BooksSearch from './pages/Books/books';
 import Cookies from 'js-cookie';
 import './App.css';
 
@@ -23,7 +24,7 @@ function App() {
         token: token,
       });
     }
-  }, []);
+  }, );
 
   return (
     <div>
@@ -34,10 +35,13 @@ function App() {
           <Route path='/users' element={<SignUp />} />
           <Route path='/users/sign_in' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
-          {/* <Route path='/' element={}> /> */}
-          {/* <Route path='/' element={}> /> */}
+          <Route path="/books" element={<BooksSearch />} /> 
         </Routes>
       </BrowserRouter>
+
+      {/* <BooksSearch> */}
+
+      {/* </BooksSearch> */}
     </div>
 )}
 
