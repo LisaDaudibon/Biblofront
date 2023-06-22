@@ -1,0 +1,19 @@
+
+
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+  width: 30%;
+  text-align: center;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.books-container {
+  justify-content: center;
+  align-items: center;
+}
