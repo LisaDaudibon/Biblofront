@@ -1,12 +1,10 @@
-import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-const userAtom = atom({
+export const userAtom = atomWithStorage({
+  id: "",id: "",
   email: "",
   pseudo:"",
-  id: "",
   token: "",
   admin: false,
   isLoggedIn: false,
 });
-
-export default userAtom
