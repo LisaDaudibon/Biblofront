@@ -1,11 +1,28 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Sign_up from './pages/sign_up';
-import Sign_in from './pages/sign_in';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { userAtom } from './atoms/userAtom';
+import SignUp from './pages/signup';
+import signIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import './App.css';
 
 function App() {
+  // const [, setUser] = useAtom(userAtom);
+
+  // useEffect(() => {
+  //   const token = Cookies.get('token');
+  //   const id = Cookies.get('id');
+
+  //   if (token) {
+  //     setUser({
+  //       id: id,
+  //       isLoggedIn: true,
+  //       token: token,
+  //     });
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -13,8 +30,8 @@ function App() {
       {/* <Navbar /> */}
         <Routes>
           <Route path='/home' element={<Home />} />
-          <Route path='/users' element={<Sign_up />} />
-          <Route path='/users/sign_in' element={<Sign_in />} />
+          <Route path='/users' element={<SignUp />} />
+          <Route path='/users/sign_in' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
           {/* <Route path='/' element={}> /> */}
           {/* <Route path='/' element={}> /> */}
