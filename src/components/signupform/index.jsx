@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useAtom } from 'jotai';
-import userAtom from '../../atoms/userAtom';
+import { userAtom } from '../../atoms/userAtom';
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 
@@ -30,7 +31,7 @@ function SignupForm () {
             pseudo: pseudo,
             password: password,
             password_confirmation: password_confirmation,
-            admin: admin
+            // admin: admin
           }
         }),
       });
@@ -85,6 +86,7 @@ function SignupForm () {
           required
         />
       </div>
+      <br></br>
       <div>
         <label htmlFor="password">Mot de passe :   </label>
         <input
@@ -120,7 +122,7 @@ function SignupForm () {
       <br></br> */}
       <button type="submit">Créer un compte</button>
       <br></br>
-      {/* <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p> */}
+      <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p>
     </form>
   );
 }

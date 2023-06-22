@@ -3,26 +3,27 @@ import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from './atoms/userAtom';
 import SignUp from './pages/signup';
-import signIn from './pages/signin';
+import SignIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
+import Cookies from 'js-cookie';
 import './App.css';
 
 function App() {
-  // const [, setUser] = useAtom(userAtom);
+  const [, setUser] = useAtom(userAtom);
 
-  // useEffect(() => {
-  //   const token = Cookies.get('token');
-  //   const id = Cookies.get('id');
+  useEffect(() => {
+    const token = Cookies.get('token');
+    const id = Cookies.get('id');
 
-  //   if (token) {
-  //     setUser({
-  //       id: id,
-  //       isLoggedIn: true,
-  //       token: token,
-  //     });
-  //   }
-  // }, []);
+    if (token) {
+      setUser({
+        id: id,
+        isLoggedIn: true,
+        token: token,
+      });
+    }
+  }, []);
 
   return (
     <div>

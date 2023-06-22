@@ -1,6 +1,6 @@
 import SignupForm from "../components/signupform/index";
 
-function Signup () {
+function SignUp () {
   return (
     <>
       <SignupForm />
