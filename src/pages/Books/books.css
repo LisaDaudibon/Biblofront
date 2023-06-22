@@ -2,18 +2,44 @@
 
 .card{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
-  width: 30%;
+  width: 550px;
+  height: 550px;
   text-align: center;
+  border-radius: 15%;
 }
 
-.books-grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-  padding: 10px;
-}
-
-.books-container {
+.container {
   justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.description {
+  height: 80px;
+  overflow: hidden;
+}
+
+.search-input-left {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  width: 300px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+}
+.rounded-button-right {
+  
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+h2{
+  color: ;
 }
