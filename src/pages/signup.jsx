@@ -8,6 +8,6 @@ function SignUp () {
       <Logout />
     </>
   );
-};
+}
 
 export default SignUp;
