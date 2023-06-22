@@ -9,8 +9,8 @@ function SignupForm () {
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
-  // const [password_confirmation, setPassword_Confirmation] = useState('');
-  const [admin, setAdmin] = useState('');
+  const [password_confirmation, setPassword_Confirmation] = useState('');
+  // const [admin, setAdmin] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
