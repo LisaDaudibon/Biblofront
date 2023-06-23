@@ -6,8 +6,10 @@ import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
-import BooksSearch from './pages/Books/books';
+import BooksSearch from './components/booksResearch';
 import Cookies from 'js-cookie';
+import Books from './pages/Books/books';
+
 import './App.css';
 
 function App() {
@@ -35,7 +37,8 @@ function App() {
           <Route path='/users' element={<SignUp />} />
           <Route path='/users/sign_in' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/books" element={<BooksSearch />} /> 
+          <Route path="/books" element={<Books />} /> 
+          
 
         </Routes>
       </BrowserRouter>
