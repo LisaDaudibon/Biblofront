@@ -1,22 +1,14 @@
-import { useAtom } from 'jotai';
-import { userAtom } from '../../atoms/userAtom';
-import Cookies from 'js-cookie';
-
+import { useSetAtom, useAtomValue } from 'jotai';
+import { userTokenAtom } from '../../atoms/userTokenAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
 
 function Logout() {
-  const [, setUser] = useAtom(userAtom);
-    const HandleLogout = () => {
-      setUser({
-        id: "",
-        email: "",
-        pseudo:"",
-        token: "",
-        admin: false,
-        isLoggedIn: false,
-      });
+  const setUsertoken = useSetAtom(userTokenAtom);
+  const setUserid = useSetAtom(userIdAtom)
 
-      Cookies.remove('token');
-      Cookies.remove('id');
+    const HandleLogout = () => {
+      setUsertoken(null)
+      setUserid(null)
     }
 
   return (

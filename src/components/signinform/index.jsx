@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../atoms/userAtom';
-import Cookies from 'js-cookie';
+import { useSetAtom } from 'jotai';
+import { userTokenAtom } from '../../atoms/userTokenAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
 
 function SigninForm() {
-  const [, setUser] = useAtom(userAtom);
+  const setUsertoken = useSetAtom(userTokenAtom);
+  const setUserid = useSetAtom(userIdAtom)
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
-  const [admin, setAdmin] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -29,25 +29,15 @@ function SigninForm() {
             email: email,
             pseudo: pseudo,
             password: password,
-            admin: admin
           }
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-
-        Cookies.set('token', response.headers.get("Authorization"));
-        Cookies.set('id', data.user.id);
-
-        setUser({
-          id: data.user.id,
-          email: data.user.email,
-          pseudo: data.user.pseudo,
-          token: data.user.token,
-          admin: data.user.admin,
-          isLoggedIn: true,
-        });
+        const token = await response.headers.get("Authorization");
+        setUsertoken(token);
+        const responseData = await response.json();
+        setUserid(responseData.user.id);
 
         setSuccess('Login avec succès!'); // Set success flash message
       } else {

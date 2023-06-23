@@ -5,9 +5,7 @@ import { userIdAtom } from '../../atoms/userIdAtom';
 import { Link } from "react-router-dom";
 
 function SignupForm () {
-  const usertoken = useAtomValue(userTokenAtom);
   const setUsertoken = useSetAtom(userTokenAtom);
-  const userid = useAtomValue(userIdAtom);
   const setUserid = useSetAtom(userIdAtom)
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
@@ -43,8 +41,6 @@ function SignupForm () {
         const responseData = await response.json();
         setUserid(responseData.user.id);
 
-
-        console.log(responseData)
         setSuccess('Compte créé avec succès!'); // Set success flash message
       } else {
         setError("Erreur lors de l'enregistrement du compte");
