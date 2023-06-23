@@ -1,25 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import '../pages/Books/books.css';
+
+const BookFilter = ({ categories, onFilter }) => {
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    onFilter(category);
+  };
+
+  return (
+    <div>
+      <h2>Books by Category</h2>
+
+      <div className="category-buttons">
+        {categories.map((button) => (
+          <button
+            key={button.category}
+            className={selectedCategory === button.category ? 'selected' : ''}
+            onClick={() => handleCategoryClick(button.category)}
+          >
+            {button.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const BooksCategories = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const REACT_APP_API_KEY = 'AIzaSyBoB6wZ0fqhwPsVGDe6QQZ6sDyFjZ5y4Hc';
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        if (selectedCategory === '') {
-          setBooks([]);
-          return;
+        let apiUrl = `https://www.googleapis.com/books/v1/volumes?key=${REACT_APP_API_KEY}`;
+
+        if (selectedCategory) {
+          apiUrl += `&q=subject:${encodeURIComponent(selectedCategory)}`;
         }
 
-        const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(
-            selectedCategory
-          )}&key=${REACT_APP_API_KEY}`
-        );
+        if (searchQuery) {
+          apiUrl += `&q=${encodeURIComponent(searchQuery)}`;
+        }
+
+        const response = await fetch(apiUrl);
 
         if (response.ok) {
           const data = await response.json();
@@ -33,10 +61,10 @@ const BooksCategories = () => {
     };
 
     fetchBooks();
-  }, [selectedCategory]);
+  }, [selectedCategory, searchQuery]);
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   const categoryButtons = [
@@ -44,24 +72,15 @@ const BooksCategories = () => {
     { category: 'science fiction', label: 'Science Fiction' },
     { category: 'mystery', label: 'Mystery' },
     { category: 'romance', label: 'Romance' },
-    // Add more category buttons here
   ];
+
+  const handleFilter = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div>
-      <h2></h2>
-
-      <div className="category-buttons">
-        {categoryButtons.map((button) => (
-          <button
-            key={button.category}
-            className={selectedCategory === button.category ? 'selected' : ''}
-            onClick={() => handleCategoryClick(button.category)}
-          >
-            {button.label}
-          </button>
-        ))}
-      </div>
+      <BookFilter categories={categoryButtons} onFilter={handleFilter} />
 
       <div className="container">
         {books.map((book) => (

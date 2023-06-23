@@ -5,10 +5,8 @@ import BooksCategories from "../../components/booksCategories";
 const Book = () => {
   return (
     <div>
-      <h1>Books Page</h1>
-      <BooksSearch />
-      <BooksCategories />
-      {/* Other content */}
+        <BooksSearch />
+        <BooksCategories />
     </div>
   );
 }
