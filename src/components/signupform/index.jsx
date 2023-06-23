@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../atoms/userAtom';
-import Cookies from 'js-cookie';
+import { useSetAtom, useAtomValue } from 'jotai';
+import { userTokenAtom } from '../../atoms/userTokenAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
 import { Link } from "react-router-dom";
 
 function SignupForm () {
-  const [, setUser] = useAtom(userAtom);
+  const usertoken = useAtomValue(userTokenAtom);
+  const setUsertoken = useSetAtom(userTokenAtom);
+  const userid = useAtomValue(userIdAtom);
+  const setUserid = useSetAtom(userIdAtom)
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
-  // const [password_confirmation, setPassword_Confirmation] = useState('');
-  const [admin, setAdmin] = useState('');
+  const [password_confirmation, setPassword_Confirmation] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -31,26 +33,18 @@ function SignupForm () {
             pseudo: pseudo,
             password: password,
             password_confirmation: password_confirmation,
-            // admin: admin
           }
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const token = await response.headers.get("Authorization");
+        setUsertoken(token);
+        const responseData = await response.json();
+        setUserid(responseData.user.id);
 
-        Cookies.set('token', response.headers.get("Authorization"));
-        Cookies.set('id', data.user.id);
 
-        setUser({
-          id: data.user.id,
-          email: data.user.email,
-          pseudo: data.user.pseudo,
-          // admin: data.user.admin,
-          token: data.user.token,
-          isLoggedIn: true,
-        });
-
+        console.log(responseData)
         setSuccess('Compte créé avec succès!'); // Set success flash message
       } else {
         setError("Erreur lors de l'enregistrement du compte");
@@ -58,6 +52,7 @@ function SignupForm () {
     } catch (error) {
       setError('Erreur lors de la création du compte');
     }
+
   };
 
   return (
@@ -109,17 +104,6 @@ function SignupForm () {
         />
       </div>
       <br></br>
-      {/* <div>
-        <label htmlFor="admin">Admin ?   </label>
-        <input
-          type="checkbox"
-          id="admin"
-          value={admin}
-          onChange={(e) => setAdmin(e.target.value)}
-          required
-        />
-      </div>
-      <br></br> */}
       <button type="submit">Créer un compte</button>
       <br></br>
       <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p>

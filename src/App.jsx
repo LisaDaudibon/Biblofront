@@ -1,29 +1,29 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from './atoms/userAtom';
+import { useSetAtom, useAtomValue } from 'jotai';
+import { userTokenAtom } from './atoms/userTokenAtom';
+import { userIdAtom } from './atoms/userIdAtom';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Home from './pages/home';
+import Getmember from './components/getmember/getmember';
 import Profile from './pages/profile';
-import Cookies from 'js-cookie';
 import './App.css';
 
 function App() {
-  const [, setUser] = useAtom(userAtom);
+  // const [, setUser] = useAtom(userAtom);
 
-  useEffect(() => {
-    const token = Cookies.get('token');
-    const id = Cookies.get('id');
+  // useEffect(() => {
+  //   const token = localStorage.getItem(token)
+  //   const id = localStorage.getItem(id)
 
-    if (token) {
-      setUser({
-        id: id,
-        isLoggedIn: true,
-        token: token,
-      });
-    }
-  }, []);
+  //   if (token) {
+  //     setUser({
+  //       id: id,
+  //       isLoggedIn: true,
+  //       token: token,
+  //     });
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -34,7 +34,7 @@ function App() {
           <Route path='/users' element={<SignUp />} />
           <Route path='/users/sign_in' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
-          {/* <Route path='/' element={}> /> */}
+          <Route path='/member-data' element={<Getmember />} />
           {/* <Route path='/' element={}> /> */}
         </Routes>
       </BrowserRouter>
