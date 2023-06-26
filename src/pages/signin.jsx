@@ -1,5 +1,5 @@
-import SigninForm from "../components/signinform/index";
-import Logout from "../components/logout/index";
+import SigninForm from "../components/signinform/signinform";
+import Logout from "../components/logout/logout";
 
 function SignIn() {
   return (

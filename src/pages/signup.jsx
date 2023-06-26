@@ -1,5 +1,5 @@
-import SignupForm from "../components/signupform/index";
-import Logout from "../components/logout/index";
+import SignupForm from "../components/signupform/signupform";
+import Logout from "../components/logout/logout";
 
 function SignUp () {
   return (
