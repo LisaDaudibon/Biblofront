@@ -3,6 +3,8 @@ import { useSetAtom, useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
 import { Link } from "react-router-dom";
+import '../signinform/signinstyle.css';
+
 
 function SignupForm () {
   const setUsertoken = useSetAtom(userTokenAtom);
@@ -52,16 +54,18 @@ function SignupForm () {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signinform" onSubmit={handleSubmit}>
       <h2>Crée ton compte</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>
         <label htmlFor="email">Email :   </label>
+        <br></br>
         <input
           type="email"
           id="email"
           value={email}
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -69,10 +73,12 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="pseudo">Pseudo :   </label>
+        <br></br>
         <input
           type="text"
           id="pseudo"
           value={pseudo}
+          placeholder="pseudo"
           onChange={(e) => setPseudo(e.target.value)}
           required
         />
@@ -80,10 +86,12 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="password">Mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -91,17 +99,18 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="password-confirmation">Confirme ton mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password-confirmation"
           value={password_confirmation}
+          placeholder="confirmation du mot de passe"
           onChange={(e) => setPassword_Confirmation(e.target.value)}
           required
         />
       </div>
       <br></br>
       <button type="submit">Créer un compte</button>
-      <br></br>
       <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p>
     </form>
   );

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSetAtom } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
+import './signinstyle.css';
 
 function SigninForm() {
   const setUsertoken = useSetAtom(userTokenAtom);
@@ -49,16 +50,18 @@ function SigninForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signinform" onSubmit={handleSubmit}>
       <h2>Se connecter</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>
         <label htmlFor="email">Email :   </label>
+        <br></br>
         <input
           type="email"
           id="email"
           value={email}
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -66,9 +69,11 @@ function SigninForm() {
       <br></br>
       <div>
         <label htmlFor="pseudo">Pseudo :   </label>
+        <br></br>
         <input
           type="text"
           id="pseudo"
+          placeholder="pseudo"
           value={pseudo}
           onChange={(e) => setPseudo(e.target.value)}
           required
@@ -77,10 +82,12 @@ function SigninForm() {
       <br></br>
       <div>
         <label htmlFor="password">Mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
