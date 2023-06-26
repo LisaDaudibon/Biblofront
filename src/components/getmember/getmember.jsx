@@ -1,27 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useSetAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
-import { userIdAtom } from '../../atoms/userIdAtom';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
-
 
 function Getmember() {
   const usertoken = useAtomValue(userTokenAtom);
-  const setUsertoken = useSetAtom(userTokenAtom);
-  const userid = useAtomValue(userIdAtom);
-  const setUserid = useSetAtom(userIdAtom)
   const loggedIn = useAtomValue(loggedInAtom);
-  const [profile, setProfile] = useState("");
+  const [profilemail, setProfilemail] = useState("");
+  const [profilpseudo, setProfilpseudo] = useState("");
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  // console.log(user.token)
-  // console.log("#"*60)
-  // console.log(usertoken)
+ 
   useEffect(() => {
-    
     setError ('');
-    // console.log(user.token)
-    // console.log("#"*60)
+    setSuccess('')
     const getprofile = async () => {
       console.log(usertoken)
       try {
@@ -36,26 +28,27 @@ function Getmember() {
         console.log(usertoken)
         if (response.ok) {
           const data = await response.json();
-          // setProfile({
-          //   email: data.user.email,
-          //   pseudo: data.user.pseudo});
+          setProfilemail(data.user.email)
+          setProfilpseudo(data.user.pseudo);
         } else {
-          console.error('error:', response.status);
+          setError('Erreur de récupération des données');
         }
       } catch (error) {
-        console.error('error:', 'error');
+        setError('Erreur!');
       }
     };
     if (loggedIn) {
-    getprofile();} // Call the profile function to fetch the data
+    getprofile()} // Call the profile function to fetch the data
 
-  }, [usertoken]);
+  }, [usertoken, profilemail]);
 
 
   return (
     <div>
       <p>getmembers</p>
-      {/* <p>Hello {profile.email} </p> */}
+      {error && <p>{error}</p>}
+      {success && <p>{success}</p>}
+      <p>Hello {profilpseudo} </p>
     </div>
   )
 }

@@ -1,0 +1,27 @@
+.signinform {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  max-width: 40em;
+  border: 3px solid #e5e5e5;
+  padding: 10px;
+  box-shadow: 10px 5px #3d3d3d;
+  border-radius: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2{
+  color: #2B817B;
+}
+
+button{
+  background-color: #2B817B;
+}
+
+#pseudo, #email, #password, #password-confirmation {
+  border-radius: 8px;
+  height: 35px;
+  width: 30em;
+  border: none;
+}
