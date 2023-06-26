@@ -6,7 +6,6 @@ import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
-import BooksSearch from './components/booksResearch';
 import Cookies from 'js-cookie';
 import Books from './pages/Books/books';
 
