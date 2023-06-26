@@ -6,7 +6,7 @@ const BooksSearch = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const REACT_APP_API_KEY = 'AIzaSyBoB6wZ0fqhwPsVGDe6QQZ6sDyFjZ5y4Hc';
+  const REACT_APP_API_KEY = 'AIzaSyBw9dOsg8QRJ0FtafUZ29mSbpsdg7nNAoY';
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -19,7 +19,7 @@ const BooksSearch = () => {
         }
 
         const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(sanitizedSearchTerm)}&key=${REACT_APP_API_KEY}`
+          `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(sanitizedSearchTerm)}&key=${REACT_APP_API_KEY}+&maxResults=40`
         );
 
         if (response.ok) {
