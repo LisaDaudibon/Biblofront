@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import './books.css';
 import BookDetails from './book';
+import config from '../../../config';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const REACT_APP_API_KEY = 'AIzaSyBw9dOsg8QRJ0FtafUZ29mSbpsdg7nNAoY';
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -22,7 +22,7 @@ const Books = () => {
 
         const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
           sanitizedSearchTerm
-        )}&key=${REACT_APP_API_KEY}&maxResults=40`;
+        )}&key=${config.ApiKey}&maxResults=40`;
 
         const response = await fetch(apiUrl);
 
