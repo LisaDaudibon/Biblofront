@@ -1,0 +1,33 @@
+
+.profilecard {
+  display: grid;
+  width: 100%;
+  min-width: 20em;
+  /* min-height: 70vh; */
+  border: 3px solid #e5e5e5;
+  padding: 10px;
+  box-shadow: 10px 5px #3d3d3d;
+  border-radius: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.profiletitle {
+  position: absolute;
+  top: 20px;
+  justify-self: center;
+  font-size: 40px;
+}
+
+#profilecardtitle {
+  justify-self: center;
+}
+
+#profilecardinfo{
+  justify-self: left;
+  margin: 0 10px;
+}
+
+#logout {
+  justify-self: center;
+}
