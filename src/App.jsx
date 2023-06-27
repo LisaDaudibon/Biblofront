@@ -8,7 +8,6 @@ import Home from './pages/home';
 import Profile from './pages/profile';
 import Cookies from 'js-cookie';
 import Books from './pages/Books/books';
-
 import './App.css';
 
 function App() {

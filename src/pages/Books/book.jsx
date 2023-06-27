@@ -8,8 +8,14 @@ const BookDetails = ({ book, onCloseDetails }) => {
         {book.volumeInfo.imageLinks && (
           <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
         )}
-        <p>{book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}</p>
+        <p>Auteur: {book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}</p>
         <p>{book.volumeInfo.description}</p>
+        {book.volumeInfo.pageCount && (
+          <p>Pages: {book.volumeInfo.pageCount}</p>
+        )}
+        {book.volumeInfo.publishedDate && (
+          <p>Publication: {book.volumeInfo.publishedDate}</p>
+        )}
         <button onClick={onCloseDetails}>Close</button>
       </div>
     </div>

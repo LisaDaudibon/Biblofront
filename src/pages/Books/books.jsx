@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
-import '../Books/books.css';
+import './books.css';
 import BookDetails from './book';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
-  const [hoveredBook, setHoveredBook] = useState(null);
 
   const REACT_APP_API_KEY = 'AIzaSyBw9dOsg8QRJ0FtafUZ29mSbpsdg7nNAoY';
 
@@ -49,14 +48,9 @@ const Books = () => {
     setSearchTerm(sanitizedSearchTerm);
   };
 
-  const handleBookHover = (book) => {
-    setHoveredBook(book);
+  const handleBookClick = (book) => {
+    setSelectedBook(book);
   };
-
- const handleBookClick = (book) => {
-  setSelectedBook(book);
-};
-
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
@@ -76,8 +70,6 @@ const Books = () => {
             <div
               className="card"
               key={book.id}
-              onMouseEnter={() => handleBookHover(book)}
-              onMouseLeave={() => setHoveredBook(null)}
               onClick={() => handleBookClick(book)}
             >
               <div className="card-content">
@@ -102,7 +94,7 @@ const Books = () => {
             type="text"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
-            placeholder="Enter a book title or keyword"
+            placeholder="Entrer votre recherche"
             className="search-input-left"
           />
           <button type="submit" className="rounded-button-right">
