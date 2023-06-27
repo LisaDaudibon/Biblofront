@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../atoms/userAtom';
-import Cookies from 'js-cookie';
+import { useSetAtom, useAtomValue } from 'jotai';
+import { userTokenAtom } from '../../atoms/userTokenAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
 import { Link } from "react-router-dom";
+import '../signinform/signinstyle.css';
+
 
 function SignupForm () {
-  const [, setUser] = useAtom(userAtom);
+  const setUsertoken = useSetAtom(userTokenAtom);
+  const setUserid = useSetAtom(userIdAtom)
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_Confirmation] = useState('');
-  // const [admin, setAdmin] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -31,25 +33,15 @@ function SignupForm () {
             pseudo: pseudo,
             password: password,
             password_confirmation: password_confirmation,
-            // admin: admin
           }
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-
-        Cookies.set('token', response.headers.get("Authorization"));
-        Cookies.set('id', data.user.id);
-
-        setUser({
-          id: data.user.id,
-          email: data.user.email,
-          pseudo: data.user.pseudo,
-          // admin: data.user.admin,
-          token: data.user.token,
-          isLoggedIn: true,
-        });
+        const token = await response.headers.get("Authorization");
+        setUsertoken(token);
+        const responseData = await response.json();
+        setUserid(responseData.user.id);
 
         setSuccess('Compte créé avec succès!'); // Set success flash message
       } else {
@@ -58,19 +50,22 @@ function SignupForm () {
     } catch (error) {
       setError('Erreur lors de la création du compte');
     }
+    // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signinform" onSubmit={handleSubmit}>
       <h2>Crée ton compte</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>
         <label htmlFor="email">Email :   </label>
+        <br></br>
         <input
           type="email"
           id="email"
           value={email}
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -78,10 +73,12 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="pseudo">Pseudo :   </label>
+        <br></br>
         <input
           type="text"
           id="pseudo"
           value={pseudo}
+          placeholder="pseudo"
           onChange={(e) => setPseudo(e.target.value)}
           required
         />
@@ -89,10 +86,12 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="password">Mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -100,28 +99,18 @@ function SignupForm () {
       <br></br>
       <div>
         <label htmlFor="password-confirmation">Confirme ton mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password-confirmation"
           value={password_confirmation}
+          placeholder="confirmation du mot de passe"
           onChange={(e) => setPassword_Confirmation(e.target.value)}
           required
         />
       </div>
       <br></br>
-      {/* <div>
-        <label htmlFor="admin">Admin ?   </label>
-        <input
-          type="checkbox"
-          id="admin"
-          value={admin}
-          onChange={(e) => setAdmin(e.target.value)}
-          required
-        />
-      </div>
-      <br></br> */}
       <button type="submit">Créer un compte</button>
-      <br></br>
       <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p>
     </form>
   );

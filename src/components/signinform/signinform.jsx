@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../atoms/userAtom';
-import Cookies from 'js-cookie';
+import { useSetAtom } from 'jotai';
+import { userTokenAtom } from '../../atoms/userTokenAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
+import './signinstyle.css';
 
 function SigninForm() {
-  const [, setUser] = useAtom(userAtom);
+  const setUsertoken = useSetAtom(userTokenAtom);
+  const setUserid = useSetAtom(userIdAtom)
   const [email, setEmail] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
-  const [admin, setAdmin] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -29,46 +30,39 @@ function SigninForm() {
             email: email,
             pseudo: pseudo,
             password: password,
-            admin: admin
           }
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const token = await response.headers.get("Authorization");
+        setUsertoken(token);
+        const responseData = await response.json();
+        setUserid(responseData.user.id);
 
-        Cookies.set('token', response.headers.get("Authorization"));
-        Cookies.set('id', data.user.id);
-
-        setUser({
-          id: data.user.id,
-          email: data.user.email,
-          pseudo: data.user.pseudo,
-          token: data.user.token,
-          admin: data.user.admin,
-          isLoggedIn: true,
-        });
-
-        setSuccess('Login avec succès!'); // Set success flash message
-      } else {
+       setSuccess('Login avec succès!'); // Set success flash message
+      } else { 
         setError('Erreur lors du login!');
       }
     } catch (error) {
       setError('Erreur lors de la tentative de connection!');
     }
+    // <disconnectUser /> aller chercher dans la branche getmembers 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signinform" onSubmit={handleSubmit}>
       <h2>Se connecter</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>
         <label htmlFor="email">Email :   </label>
+        <br></br>
         <input
           type="email"
           id="email"
           value={email}
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -76,9 +70,11 @@ function SigninForm() {
       <br></br>
       <div>
         <label htmlFor="pseudo">Pseudo :   </label>
+        <br></br>
         <input
           type="text"
           id="pseudo"
+          placeholder="pseudo"
           value={pseudo}
           onChange={(e) => setPseudo(e.target.value)}
           required
@@ -87,10 +83,12 @@ function SigninForm() {
       <br></br>
       <div>
         <label htmlFor="password">Mot de passe :   </label>
+        <br></br>
         <input
           type="password"
           id="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />

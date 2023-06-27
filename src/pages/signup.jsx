@@ -1,11 +1,18 @@
-import SignupForm from "../components/signupform/index";
-import Logout from "../components/logout/index";
+import SignupForm from "../components/signupform/signupform";
+import Getmember from "../components/getmember/getmember";
+import { useAtomValue } from 'jotai';
+import { loggedInAtom } from "../atoms/loggedInAtom";
 
 function SignUp () {
+  const loggedIn = useAtomValue(loggedInAtom);
+
   return (
     <>
-      <SignupForm />
-      <Logout />
+    {loggedIn? (
+      <Getmember />
+      ) : (
+        <SignupForm />
+      )}
     </>
   );
 }
