@@ -40,13 +40,14 @@ function SigninForm() {
         const responseData = await response.json();
         setUserid(responseData.user.id);
 
-        setSuccess('Login avec succès!'); // Set success flash message
-      } else {
+       setSuccess('Login avec succès!'); // Set success flash message
+      } else { 
         setError('Erreur lors du login!');
       }
     } catch (error) {
       setError('Erreur lors de la tentative de connection!');
     }
+    // <disconnectUser /> aller chercher dans la branche getmembers 
   };
 
   return (

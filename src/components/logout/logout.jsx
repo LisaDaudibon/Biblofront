@@ -13,7 +13,7 @@ function Logout() {
 
   return (
     <div>
-      <a href="/home" onClick={HandleLogout}>Se déconnecter</a>
+      <button href="/home" onClick={HandleLogout}>Se déconnecter</button>
   </div>
 
   )
