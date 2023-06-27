@@ -50,7 +50,7 @@ function SignupForm () {
     } catch (error) {
       setError('Erreur lors de la création du compte');
     }
-
+    // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
 
   return (
