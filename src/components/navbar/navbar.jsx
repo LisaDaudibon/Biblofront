@@ -2,28 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../logout/logout';
 import './navbar.css';
+import { useAtomValue } from 'jotai';
+import { loggedInAtom } from '../../atoms/loggedInAtom';
 
 const Navbar = () => {
+
+  const loggedIn = useAtomValue(loggedInAtom);
+
   return (
     <nav className="navbar">
       <ul className="navbar-list">
         <li>
-          <a href="/books">
+          <Link to="/books">
             Books
-          </a>
-        </li>
-        <li>
-          <Link to="/users">
-            Sign Up
           </Link>
         </li>
-        <li>
-          <Link className="nav-link" to="/users/sign_in">
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link className="nav-link" to="/profile">
+        {loggedIn? (
+          <>
+          <li>
+          <Link to="/profile">
             Profile
           </Link>
         </li>
@@ -32,6 +29,20 @@ const Navbar = () => {
             Logout
           </button>
         </li>
+        </>
+        ) : (
+          <>
+        <li>
+          <Link to="/users">
+            Sign Up
+          </Link>
+        </li>
+        <li>
+          <Link to="/users/sign_in">
+            Login
+          </Link>
+        </li></>
+        )}
       </ul>
     </nav>
   );
