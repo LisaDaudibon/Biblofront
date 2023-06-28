@@ -8,9 +8,9 @@ const Navbar = () => {
     <nav className="navbar">
       <ul className="navbar-list">
         <li>
-          <a href="/books">
+          <Link to="/books">
             Books
-          </a>
+          </Link>
         </li>
         <li>
           <Link to="/users">
@@ -18,12 +18,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/users/sign_in">
+          <Link to="/users/sign_in">
             Login
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/profile">
+          <Link to="/profile">
             Profile
           </Link>
         </li>
