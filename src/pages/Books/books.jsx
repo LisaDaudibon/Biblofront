@@ -4,17 +4,17 @@ import './books.css';
 import BookDetails from './book';
 import { useSetAtom } from 'jotai';
 import { useAtomValue } from 'jotai';
-
-
-
-
-//import config from '../../../config';
+import { bookIdAtom } from '../../atoms/bookIdAtom';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
+  const setbookId = useSetAtom(bookIdAtom)
 
+  const resetBookId = () => {
+    setbookId(null);
+  };
   // const BookTitle = useAtomValue(bookIdAtom.book_title);
   // const setBookTitle = useSetAtom(bookIdAtom.book_title);
 
@@ -68,6 +68,7 @@ const Books = () => {
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
+    resetBookId();
     //setBookTitle(null);
 
   };
@@ -124,7 +125,7 @@ const Books = () => {
 
       {selectedBook && (
         <div className="popup">
-          <BookDetails book={selectedBook} onCloseDetails={handleCloseDetails} />
+          <BookDetails book={selectedBook} onCloseDetails={handleCloseDetails} resetBookId={resetBookId}/>
         </div>
       )}
     </div>
