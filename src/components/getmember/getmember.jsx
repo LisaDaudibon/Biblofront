@@ -47,8 +47,9 @@ function Getmember() {
 
 
   return (
-    <div className='profilecard'>
+    <>
       <h2 className='profiletitle'>Mon profil</h2>
+      <div className='profilecard'>
         {error && <p>{error}</p>}
         {success && <p>{success}</p>}
         <p id="profilecardtitle">Hello {profilpseudo} </p>
@@ -64,7 +65,8 @@ function Getmember() {
         <br></br>
         <br></br>
         <div id='logout'><Logout /></div>
-    </div>
+      </div>
+    </>
   )
 }
 
