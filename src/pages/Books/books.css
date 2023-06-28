@@ -48,10 +48,6 @@
   border-bottom-left-radius: 0;
 }
 
-h2 {
-  color: ;
-}
-
 .page-container {
   display: flex;
   flex-direction: column;
@@ -66,11 +62,31 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 550px; 
-  height: auto; 
+  max-width: 90%; /* Adjust the maximum width as needed */
+  width: auto;
+  max-height: 90vh; /* Adjust the maximum height as needed */
+  overflow-y: auto;
   background-color: #333; 
-  color: #fff; 
+  color: #fff;
   padding: 20px;
   box-sizing: border-box;
+  border-radius: 20px;
   z-index: 999;
+}
+
+#booktitlebox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#book-close {
+  font-size: xx-small;
+  height: 20px;
+}
+
+.book-infos{
+  margin: 0 15px;
+  text-align: left;
+  padding-bottom: 10px;
 }
