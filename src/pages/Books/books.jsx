@@ -62,7 +62,7 @@ const Books = () => {
 
   const renderBooks = () => {
     return (
-      <div className="container">
+      <div className="books-container">
         {books
           .filter(
             (book) =>
@@ -72,7 +72,7 @@ const Books = () => {
           )
           .map((book) => (
             <div
-              className="card"
+              className="books-card"
               key={book.id}
               onClick={() => handleBookClick(book)}
             >
@@ -92,7 +92,7 @@ const Books = () => {
   return (
     <div className="page-container">
       <h2>Book Search</h2>
-      <div className="navbar">
+      <div className="search-bar">
         <form onSubmit={handleSearch} className="search-form">
           <input
             type="text"
