@@ -15,19 +15,19 @@ function App() {
     <BrowserRouter>
     <Navbar />
 
-        <Routes>
-          <Route path='/home' element={<Home />} />
-          <Route path='/users' element={<SignUp />} />
-          <Route path='/users/sign_in' element={<SignIn />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path="/books" element={<Books />} /> 
-          
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/users' element={<SignUp />} />
+        <Route path='/users/sign_in' element={<SignIn />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/books' element={<Books />} /> 
+        
 
-          {/* <Route path='/' element={}> /> */}
-          {/* <Route path='/' element={}> /> */}
-          {/* <Route path='/' element={}> /> */}
-        </Routes>
-      </BrowserRouter>
+        {/* <Route path='/' element={}> /> */}
+        {/* <Route path='/' element={}> /> */}
+        {/* <Route path='/' element={}> /> */}
+      </Routes>
+    </BrowserRouter>
 
       {/* <BooksSearch> */}
 
