@@ -23,7 +23,7 @@ function Editmemberbutton() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/users/${userid}`, {
+      const response = await fetch(`https://bibloback.fly.dev/users/${userid}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
