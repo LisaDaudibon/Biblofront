@@ -4,6 +4,7 @@ import Logout from '../logout/logout';
 import './navbar.css';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
+import Logo from './logo'
 
 const Navbar = () => {
 
@@ -11,6 +12,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <div className='logoContainer'>
+        <a href="/books" className="logoLink">
+          <Logo/>
+        </a>
+      </div>
       <ul className="navbar-list">
         <li>
           <Link to="/books">

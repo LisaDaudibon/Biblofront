@@ -7,15 +7,17 @@
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .navbar-list {
   list-style-type: none;
-  margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
+  margin-left: auto;
+  margin-right: 5%;
+  justify-content: space-around;
 }
 
 .navbar-list li {
@@ -35,8 +37,20 @@
   background-color: #555;
 }
 
-.navbar-list button{
+.navbar-list button {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 13px;
+}
+
+.logo-container {
+  display: flex;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.nameLogo {
+  max-height: 200px;
 }
