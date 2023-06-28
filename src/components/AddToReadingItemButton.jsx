@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
-import { useSetAtom, useAtomValue } from 'jotai';
+import React, { useState } from 'react';
+import { useAtomValue } from 'jotai';
 import { bookTitleAtom } from '../atoms/bookTitleAtom';
 import { bookAuthorAtom } from '../atoms/bookAuthorAtom';
 import { bookPublishedAtom } from '../atoms/bookPublishedAtom';
 import { bookPagesAtom } from '../atoms/bookPagesAtom';
 import { bookCategoryAtom } from '../atoms/bookCategoryAtom';
+import { userIdAtom } from '../atoms/userIdAtom';
 
 const AddToReadingItem = ({ ReadingItem }) => {
   const bookTitle = useAtomValue(bookTitleAtom)
-  const setBookTitle = useSetAtom(bookTitleAtom);
   const bookAuthor = useAtomValue(bookAuthorAtom)
-  const setBookAuthor = useSetAtom(bookAuthorAtom);
   const bookPublishedDate = useAtomValue(bookPublishedAtom)
-  const setBookPublished = useSetAtom(bookPublishedAtom);
   const bookPages = useAtomValue(bookPagesAtom)
-  const setBookPages = useSetAtom(bookPagesAtom);
   const bookCategory = useAtomValue(bookCategoryAtom)
-  const setBookCategory = useSetAtom(bookCategoryAtom);
+  const userid = useAtomValue(userIdAtom)
+
+  const [bookId, setbookId] = useState('')
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -33,35 +32,60 @@ const AddToReadingItem = ({ ReadingItem }) => {
         },
         body: JSON.stringify({
           book: {
-            title: title,
-            author: author,
-            description: description,
-            image_url: image_url,
-            pages: pages,
-            published_date: published_date,
-            category: category,
+            title: bookTitle,
+            author: bookAuthor,
+            pages: bookPages,
+            published_date: bookPublishedDate,
+            category: bookCategory
           }
         }),
       });
 
       if (response.ok) {
-        const token = await response.headers.get("Authorization");
-        setUsertoken(token);
-        const responseData = await response.json();
-        setUserid(responseData.user.id);
+        // const responseData = await response.json();
+        // console.log(responseData)
+        // setbookId(responseData.book.id)
 
-        setSuccess('Compte créé avec succès!'); // Set success flash message
+
+        setSuccess('Livre enregistré'); // Set success flash message
       } else {
         setError("Erreur lors de l'enregistrement du compte");
       }
     } catch (error) {
       setError('Erreur lors de la création du compte');
     }
-    // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
+    console.log(bookId)
+    try {
+      const response = await fetch('https://bibloback.fly.dev/reading_items', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "reading_item":{
+            "read": false,
+            "book_id":1,
+            "reading_list_id": userid}
+        }),
+      });
+
+      if (response.ok) {
+        // const responseData = await response.json();
+
+        setSuccess('Livre enregistré'); // Set success flash message
+      } else {
+        setError("Erreur lors de l'enregistrement du compte");
+      }
+    } catch (error) {
+      setError('Erreur lors de la création du compte');
+    }
   };
 
      return(
-
+      <div>
+        <button href="/books" onClick={handleSubmit}>Ajouter</button>
+      </div>
      )
-
    }
+
+export default AddToReadingItem;

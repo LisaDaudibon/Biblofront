@@ -5,7 +5,7 @@ import { bookAuthorAtom } from '../../atoms/bookAuthorAtom';
 import { bookPublishedAtom } from '../../atoms/bookPublishedAtom';
 import { bookPagesAtom } from '../../atoms/bookPagesAtom';
 import { bookCategoryAtom } from '../../atoms/bookCategoryAtom';
-
+import AddToReadingItem from '../../components/AddToReadingItemButton';
 
 const BookDetails = ({ book, onCloseDetails }) => {
   const bookTitle = useAtomValue(bookTitleAtom)
@@ -19,12 +19,10 @@ const BookDetails = ({ book, onCloseDetails }) => {
   const bookCategory = useAtomValue(bookCategoryAtom)
   const setBookCategory = useSetAtom(bookCategoryAtom);
 
-
-
   useEffect(() => {
     const setBookInfo = (book) => {
       setBookTitle(book.volumeInfo.title);
-      setBookAuthor(book.volumeInfo.authors);
+      setBookAuthor(book.volumeInfo.authors && book.volumeInfo.authors[0]);
       setBookPublished(book.volumeInfo.publishedDate);
       setBookPages(book.volumeInfo.pageCount);
       setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0]);
@@ -39,6 +37,7 @@ const BookDetails = ({ book, onCloseDetails }) => {
       <div className="book-details-content">
         <div id="booktitlebox">
           <h3 id="booktitle">{bookTitle}</h3>
+          <AddToReadingItem />
           <button id="book-close" onClick={onCloseDetails}>X</button></div>
           {book.volumeInfo.imageLinks && (
             <img src={book.volumeInfo.imageLinks.thumbnail} alt={bookTitle} />
@@ -52,10 +51,8 @@ const BookDetails = ({ book, onCloseDetails }) => {
             <p className="book-infos">Publication: {book.volumeInfo.publishedDate}</p>
           )}
         {book.volumeInfo.categories &&(
-          <p>Genre: {book.volumeInfo.categories}</p>
-        )
-        
-        }
+          <p className="book-infos">Genre: {book.volumeInfo.categories}</p>
+        )}
       </div>
     </div>
   );
