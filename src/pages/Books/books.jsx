@@ -68,7 +68,7 @@ const Books = () => {
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
-    // setBookTitle(null);
+    //setBookTitle(null);
 
   };
 
