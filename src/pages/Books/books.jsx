@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import './books.css';
 import BookDetails from './book';
+import { useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
+
+
+
+
 //import config from '../../../config';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
+
+  // const BookTitle = useAtomValue(bookIdAtom.book_title);
+  // const setBookTitle = useSetAtom(bookIdAtom.book_title);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -54,10 +63,13 @@ const Books = () => {
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
+    // setBookTitle(book.volumeInfo.title)
   };
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
+    // setBookTitle(null);
+
   };
 
   const renderBooks = () => {
