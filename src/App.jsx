@@ -4,6 +4,7 @@ import SignIn from './pages/signin';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import Books from './pages/Books/books';
+import Navbar from './components/navbar/navbar';
 import './App.css';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
   return (
     <div>
     <BrowserRouter>
-      {/* <Navbar /> */}
+    <Navbar />
+
         <Routes>
           <Route path='/home' element={<Home />} />
           <Route path='/users' element={<SignUp />} />
