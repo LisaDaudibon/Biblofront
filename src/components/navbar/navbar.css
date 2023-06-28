@@ -54,3 +54,30 @@
 .nameLogo {
   max-height: 200px;
 }
+
+.menuLink {
+  opacity: 0; 
+  transition: opacity 0.3s ease; 
+}
+
+.iconContainer:hover .menuLink {
+  opacity: 1;
+}
+
+.icon {
+font-size: 30px;
+color : white ;
+}
+
+.icon:hover {
+  color : rgb(186, 124, 30) ;
+  }
+
+.menuListItem {
+  flex: 4;
+  display: flex;
+}
+
+.loginLink {
+  font-size: 10px;
+}
