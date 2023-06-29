@@ -18,10 +18,10 @@ const BookDetails = ({ book, onCloseDetails }) => {
   useEffect(() => {
     const setBookInfo = (book) => {
       setBookTitle(book.volumeInfo.title);
-      setBookAuthor(book.volumeInfo.authors && book.volumeInfo.authors[0]);
-      setBookPublished(book.volumeInfo.publishedDate);
-      setBookPages(book.volumeInfo.pageCount);
-      setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0]);
+      setBookAuthor(book.volumeInfo.authors && book.volumeInfo.authors[0] || 'Non précisé');
+      setBookPublished(book.volumeInfo.publishedDate || 'non précisé');
+      setBookPages(book.volumeInfo.pageCount || 100);
+      setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0] || "Autre");
     };
 
     setBookInfo(book);
