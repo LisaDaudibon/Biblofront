@@ -52,7 +52,7 @@ function SigninForm() {
 
   return (
     <form className="signinform" onSubmit={handleSubmit}>
-      <h2>Se connecter</h2>
+      <h2 className='signintitle'>Se connecter</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>

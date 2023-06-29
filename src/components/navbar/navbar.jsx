@@ -4,6 +4,12 @@ import Logout from '../logout/logout';
 import './navbar.css';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
+import Logo from './logo'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { faBookBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faSwatchbook } from '@fortawesome/free-solid-svg-icons';
+
 
 const Navbar = () => {
 
@@ -11,11 +17,19 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <div className='logoContainer'>
+        <a href="/books" className="logoLink">
+          <Logo/>
+        </a>
+      </div>
       <ul className="navbar-list">
-        <li>
-          <Link to="/books">
-            Books
-          </Link>
+        <li className="menuListItem">
+          <div className="iconContainer">
+            <FontAwesomeIcon icon={faSwatchbook} className="icon"/>
+            <Link to="/books" className="menuLink">
+              Books
+            </Link>
+          </div>
         </li>
         {loggedIn? (
           <>
@@ -25,22 +39,26 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <button onClick={Logout}>
-            Logout
-          </button>
+          <Logout />
         </li>
         </>
         ) : (
           <>
-        <li>
-          <Link to="/users">
-            Sign Up
-          </Link>
+        <li className="menuListItem">
+          <div className="iconContainer">
+            <FontAwesomeIcon icon={faBookBookmark} className="icon"/>
+            <Link to="/users" className="menuLink">
+              S'inscrire
+            </Link>
+          </div>
         </li>
-        <li>
-          <Link to="/users/sign_in">
-            Login
-          </Link>
+        <li className="menuListItem">
+          <div className="iconContainer">
+            <FontAwesomeIcon icon={faBookOpen} className="icon"/>
+            <Link to="/users/sign_in" className="menuLink loginLink">
+              Se connecter
+            </Link>
+          </div>
         </li></>
         )}
       </ul>
