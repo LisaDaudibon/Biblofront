@@ -142,11 +142,11 @@ const AddToReadingItem = (ReadingItem) => {
         setError('Error saving book second');
       } finally {
         setLoading(false);
-      }
-    } else {
-      setLoading(true);
-      createReadingItem(); // Create reading item directly if bookId exists
-    }
+      }} 
+    // } else {
+    //   setLoading(true);
+    //   createReadingItem(); // Create reading item directly if bookId exists
+    // }
   };
 
   return (
