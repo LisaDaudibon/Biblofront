@@ -30,7 +30,7 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faSwatchbook} className="icon"/>
             </Link>
             <Link to="/about">
-              About
+              Contact
             </Link>
           </div>
         </li>
