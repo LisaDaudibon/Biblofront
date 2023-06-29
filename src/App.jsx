@@ -12,7 +12,6 @@ function App() {
   const setCount = useSetAtom(bookCountAtom);
   const loggedIn = useAtomValue(loggedInAtom);
   const [setError] = useState('');
-  const [setSuccess] = useState('');
 
   useEffect(() => {
     console.log("loggedIn value:", loggedIn);
