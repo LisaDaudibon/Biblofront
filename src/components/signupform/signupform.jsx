@@ -55,7 +55,7 @@ function SignupForm () {
 
   return (
     <form className="signinform" onSubmit={handleSubmit}>
-      <h2>Crée ton compte</h2>
+      <h2 className='signintitle'>Crée ton compte</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <div>
