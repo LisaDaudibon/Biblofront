@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../navbar/logo';
+import Logo from './footerLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import './footer.css';
@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="container">
+      <div className="footer-container">
         <div className="footer-content">
           <div className="footer-logo">
           <Logo/>
