@@ -4,15 +4,27 @@ import './books.css';
 import BookDetails from './book';
 import { useSetAtom } from 'jotai';
 import { bookIdAtom } from '../../atoms/bookIdAtom';
+import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../../atoms/bookAtom';
+
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
   const setbookId = useSetAtom(bookIdAtom)
+  const setbookTitle = useSetAtom(bookTitleAtom)
+  const setpublishedDate = useSetAtom(bookPublishedAtom)
+  const setAuthor = useSetAtom(bookAuthorAtom)
+  const setCategory = useSetAtom(bookCategoryAtom)
+  const setPages = useSetAtom(bookPagesAtom)
 
-  const resetBookId = () => {
+  const resetBookinfos = () => {
     setbookId(null);
+    setbookTitle(null)
+    setpublishedDate(null)
+    setAuthor(null)
+    setCategory(null)
+    setPages(null)
   };
 
   useEffect(() => {
@@ -65,7 +77,7 @@ const Books = () => {
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
-    resetBookId();
+    resetBookinfos(null);
     //setBookTitle(null);
 
   };
@@ -122,7 +134,7 @@ const Books = () => {
 
       {selectedBook && (
         <div className="popup">
-          <BookDetails book={selectedBook} onCloseDetails={handleCloseDetails} resetBookId={resetBookId}/>
+          <BookDetails book={selectedBook} onCloseDetails={handleCloseDetails} resetBookinfos={resetBookinfos}/>
         </div>
       )}
     </div>
