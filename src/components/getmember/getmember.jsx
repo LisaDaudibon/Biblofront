@@ -91,11 +91,11 @@ function Getmember() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
 
-        setEditemail(data.user.email)
-        setEditpseudo(data.user.pseudo)
-        setEditpassword(data.user.password)
+        // setEditemail(data.user.email)
+        // setEditpseudo(data.user.pseudo)
+        // setEditpassword(data.user.password)
 
         setSuccess('Edition réussie!');
       } else {
@@ -104,6 +104,8 @@ function Getmember() {
     } catch (error) {
       setError('Erreur lors de la tentative de connection!');
     }
+
+    handleSubmit();
   };
 
   return (
@@ -122,7 +124,7 @@ function Getmember() {
             placeholder="email"
             onChange={(e) => setEditemail(e.target.value)}
             />
-            <button type="submit">Sauvegarder</button>
+            <button type="submit" onSubmit={handleSubmit}>Sauvegarder</button>
             <button onClick={toggleeditbutton}>Editer</button> </>
           ) : (<>
           {profilemail}
