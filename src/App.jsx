@@ -6,10 +6,46 @@ import Profile from './pages/profile';
 import Books from './pages/Books/books';
 import Navbar from './components/navbar/navbar';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { bookCountAtom } from './atoms/bookAtom';
+import { loggedInAtom } from './atoms/loggedInAtom';
 
 
 function App() {
+  const setCount = useSetAtom(bookCountAtom);
+  const loggedIn = useAtomValue(loggedInAtom);
+  const [setError] = useState('');
+  const [setSuccess] = useState('');
 
+  useEffect(() => {
+    console.log("loggedIn value:", loggedIn);
+
+    const getcount = async () => {
+      try {
+
+        const response = await fetch('https://bibloback.fly.dev/books', {
+          method: 'GET',
+          headers: {
+          "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const last = data.length
+          setCount(last)
+        } else {
+          setError('Erreur de récupération des données');
+        }
+      } catch (error) {
+        setError('Erreur!');
+      }
+    };
+    if (loggedIn) {
+    getcount() }// Call the profile function to fetch the data
+
+  }, [loggedIn]);
 
   return (
     <div>
