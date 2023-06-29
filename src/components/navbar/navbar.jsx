@@ -39,9 +39,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <button onClick={Logout}>
-            Logout
-          </button>
+          <Logout />
         </li>
         </>
         ) : (
