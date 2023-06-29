@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { bookTitleAtom } from '../../atoms/bookTitleAtom';
-import { bookAuthorAtom } from '../../atoms/bookAuthorAtom';
-import { bookPublishedAtom } from '../../atoms/bookPublishedAtom';
-import { bookPagesAtom } from '../../atoms/bookPagesAtom';
-import { bookCategoryAtom } from '../../atoms/bookCategoryAtom';
-import { bookIdAtom } from '../../atoms/bookIdAtom';
+import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../../atoms/bookAtom';
 import AddToReadingItem from '../../components/AddToReadingItemButton';
 
 const BookDetails = ({ book, onCloseDetails }) => {
@@ -19,7 +14,6 @@ const BookDetails = ({ book, onCloseDetails }) => {
   const setBookPages = useSetAtom(bookPagesAtom);
   const bookCategory = useAtomValue(bookCategoryAtom)
   const setBookCategory = useSetAtom(bookCategoryAtom);
-  const bookId = useAtomValue(bookIdAtom)// Add bookId state
 
   useEffect(() => {
     const setBookInfo = (book) => {
@@ -28,17 +22,11 @@ const BookDetails = ({ book, onCloseDetails }) => {
       setBookPublished(book.volumeInfo.publishedDate);
       setBookPages(book.volumeInfo.pageCount);
       setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0]);
-
     };
 
     setBookInfo(book);
-  }, [ bookTitle,bookAuthor,bookPublishedDate,bookPages,bookCategory ]);
+  }, [ bookTitle, bookAuthor, bookPublishedDate, bookPages, bookCategory ]);
 
-  // useEffect(() => {
-  //   setBookId(null); // Reset bookId to null when the component mounts or book changes
-  // }, [book]);
-
-  // console.log(bookId)
   return (
     <div className="book-details">
       <div className="book-details-content">

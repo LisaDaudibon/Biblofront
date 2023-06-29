@@ -15,7 +15,7 @@ const getBookId = (bookData, bookTitle, setbookId) => {
   }
 };
 
-const AddToReadingItem = ({ ReadingItem }) => {
+const AddToReadingItem = (ReadingItem) => {
   const bookTitle = useAtomValue(bookTitleAtom);
   const bookAuthor = useAtomValue(bookAuthorAtom);
   const bookPublishedDate = useAtomValue(bookPublishedAtom);
@@ -92,10 +92,10 @@ const AddToReadingItem = ({ ReadingItem }) => {
       if (readingItemResponse.ok) {
         setSuccess('Reading item saved');
       } else {
-        setError('Error saving reading item');
+        setError('Error saving reading item first');
       }
     } catch (error) {
-      setError('Error saving reading item');
+      setError('Error saving reading item second');
     } finally {
       setLoading(false);
     }

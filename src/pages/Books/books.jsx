@@ -3,7 +3,6 @@ import DOMPurify from 'dompurify';
 import './books.css';
 import BookDetails from './book';
 import { useSetAtom } from 'jotai';
-import { useAtomValue } from 'jotai';
 import { bookIdAtom } from '../../atoms/bookIdAtom';
 
 const Books = () => {
@@ -15,8 +14,6 @@ const Books = () => {
   const resetBookId = () => {
     setbookId(null);
   };
-  // const BookTitle = useAtomValue(bookIdAtom.book_title);
-  // const setBookTitle = useSetAtom(bookIdAtom.book_title);
 
   useEffect(() => {
     const fetchBooks = async () => {
