@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Profile from './pages/profile';
 import Books from './pages/Books/books';
 import Navbar from './components/navbar/navbar';
+import About from './components/contact/contact';
 import './App.css';
 
 
@@ -21,6 +22,8 @@ function App() {
         <Route path='/users/sign_in' element={<SignIn />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/books' element={<Books />} /> 
+        <Route path='/about' element={<About />} /> 
+
         {/* <Route path='/' element={}> /> */}
         {/* <Route path='/' element={}> /> */}
         {/* <Route path='/' element={}> /> */}

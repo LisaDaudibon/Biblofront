@@ -29,6 +29,9 @@ const Navbar = () => {
             <Link to="/books" className="menuLink">
               Books
             </Link>
+            <Link to="/about" className="menuLink">
+              About
+            </Link>
           </div>
         </li>
         {loggedIn? (
