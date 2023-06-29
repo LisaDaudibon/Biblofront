@@ -136,10 +136,10 @@ const AddToReadingItem = (ReadingItem) => {
           setSuccess('Book saved');
           createReadingItem(); // Create reading item after book is saved
         } else {
-          setError('Error saving book');
+          setError('Error saving book first');
         }
       } catch (error) {
-        setError('Error saving book');
+        setError('Error saving book second');
       } finally {
         setLoading(false);
       }
