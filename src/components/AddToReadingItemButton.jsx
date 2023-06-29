@@ -130,7 +130,7 @@ const AddToReadingItem = (ReadingItem) => {
         });
 
         if (bookResponse.ok) {
-          const bookData = await bookResponse.json();
+          // const bookData = await bookResponse.json();
           const newBookId = bookcount;
           setbookId(newBookId);
           setSuccess('Book saved');
