@@ -42,8 +42,9 @@ const AddToReadingItem = (ReadingItem) => {
 
     setLoading(true);
     const getBookDatabase = async () => {
+      const url = 'http://localhost:3000/books'
       try {
-        const response = await fetch('https://bibloback.fly.dev/books', {
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -74,8 +75,9 @@ const AddToReadingItem = (ReadingItem) => {
   }, [bookData, bookTitle, setbookId]);
 
   const createReadingItem = async () => {
+    const urlri = 'http://localhost:3000/reading_items'
     try {
-      const readingItemResponse = await fetch('https://bibloback.fly.dev/reading_items', {
+      const readingItemResponse = await fetch(urlri, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ const AddToReadingItem = (ReadingItem) => {
     if (bookId === null) {
       setLoading(true);
       try {
-        const bookResponse = await fetch('https://bibloback.fly.dev/books', {
+        const bookResponse = await fetch('http://localhost:3000/books', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

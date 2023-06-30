@@ -20,7 +20,9 @@ function Getmember() {
     const getprofile = async () => {
       try {
 
-        const response = await fetch('https://bibloback.fly.dev/member-data', {
+        const url = 'https://bibloback.fly.dev/member-data'
+
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
           "Authorization": `${usertoken}`,
