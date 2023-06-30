@@ -2,13 +2,17 @@
 ### Projet final pour The Hacking Project
 
 ## Description
-Bienvenue sur notre site de recherche et de découverte de livres ! Que vous soyez passionné de lecture ou à la recherche de nouvelles œuvres captivantes, vous êtes au bon endroit. Notre plateforme facilite la recherche et la gestion de vos livres préférés.
+Bienvenue sur notre plateforme dédiée aux passionnés de livres ! Que vous soyez un lecteur avide à la recherche de nouvelles découvertes ou un bibliophile désireux d'explorer une vaste bibliothèque virtuelle, vous êtes au bon endroit.
 
-Sur notre site, vous pouvez vous inscrire et vous connecter pour accéder à un large éventail de fonctionnalités personnalisées. Vous pouvez explorer notre vaste collection de livres en utilisant notre système de recherche intuitif. Que vous cherchiez un roman, un ouvrage de non-fiction ou un livre pour enfants, nous avons une sélection diversifiée pour satisfaire tous les goûts.
+Notre site offre une base de données exhaustive regroupant une multitude de titres provenant de divers genres et époques. Que vous soyez fan de romans contemporains, de classiques intemporels, de thrillers palpitants ou de science-fiction captivante, vous trouverez assurément des ouvrages qui sauront éveiller votre intérêt.
 
-Vous avez trouvé un livre qui vous intéresse ? Une fois connecté, il vous suffit de l'ajouter à votre liste de lecture personnelle. Cela vous permet de garder une trace de tous les livres que vous souhaitez lire, et vous pouvez y accéder facilement depuis votre page de profil. Vous pouvez également consulter les livres que vous avez déjà lus et laisser des critiques et des évaluations pour partager vos opinions avec la communauté.
+L'inscription sur notre plateforme est simple et rapide. Une fois membre, vous pourrez créer votre propre liste de lecture personnalisée, enregistrant ainsi les livres qui vous intéressent le plus. Cette fonctionnalité vous permettra de garder une trace de vos livres préférés, de vos prochaines lectures ou de partager vos recommandations avec d'autres passionnés de lecture.
 
-Lien du front du site en production : https://biblofront.vercel.app/
+Rejoignez notre communauté de lecteurs passionnés dès aujourd'hui ! Venez découvrir, partager et discuter de vos livres préférés avec des personnes partageant les mêmes intérêts. Notre plateforme est un lieu d'échange et de convivialité où la passion pour la lecture est célébrée.
+
+Ne perdez plus de temps à chercher votre prochaine lecture. Rejoignez-nous et plongez dans un univers infini de connaissances, d'aventures et d'émotions littéraires.
+
+Lien du front du site en production : https://biblofront.vercel.app/ <br>
 Lien du back du site en production : https://bibloback.fly.dev/
 
 ## Membres du groupe
@@ -22,7 +26,7 @@ Lien du back du site en production : https://bibloback.fly.dev/
 - Base de données, disponible sur [Lucid](https://lucid.app/lucidchart/be1afbe0-d56f-4f66-a56b-4dc367683c0e/edit?viewport_loc=-2352%2C-911%2C4096%2C1724%2C0_0&invitationId=inv_fd6ddcef-7bf7-40d4-ba60-c3853a03e6b7)
 
 ## Versions, gems et API utilisées
-React 18.2.0, Jotai 2.2.1, React-router-dom 6.13.0.
+React 18.2.0, Jotai 2.2.1, React-router-dom 6.13.0. <br>
 Pour récupérer les livres, nous avons utilisé l'API de google : [Google Book API](https://www.google.com/books/jsapi.js)
 
 ## Lancement du programme en local
