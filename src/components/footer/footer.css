@@ -21,6 +21,8 @@
 
 .footer-links a span {
   margin-left: 5px;
+  color: #2B817B;
+
 }
 
 .footer-logo {
@@ -50,7 +52,7 @@
   left: 65%;
   transform: translateX(-50%);
   z-index: 3; /* Increase the z-index to ensure it appears above the footer */
-  background-color: #39383866;
+  background-color: #1a1919cd;
   max-width: 150px;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(81, 248, 145, 0.845);
@@ -69,7 +71,7 @@
   left: 0;
   width: 100%;
   z-index: 2; /* Increase the z-index to ensure it appears above the popup */
-  background-color: black;
+  background-color: #121111;
 }
 
 .footer-container {
@@ -85,4 +87,8 @@
 #button-footer{
   height: 25px;
   padding: 0 5px;
+}
+
+.footer-links li a:hover .svg-inline--fa {
+  color: rgb(186, 124, 30);
 }
