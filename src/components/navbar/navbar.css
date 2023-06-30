@@ -27,7 +27,7 @@
 
 .navbar-list li a,
 .navbar-list button {
-  color: #2B817B;
+  color : rgb(186, 124, 30) ;
   text-decoration: none;
   padding: 10px;
   display: flex;
