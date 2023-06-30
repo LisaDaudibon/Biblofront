@@ -1,0 +1,63 @@
+@media (max-width: 250px) {
+  .card {
+    padding: 25px; /* Reduce padding on small screens */
+    max-height: 70vh; /* Limit the card's height to 70% of the viewport height */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .card {
+    max-width: 600px; /* Adjust max width for medium screens */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .card {
+    max-width: 900px; /* Adjust max width for large screens */
+  }
+}
+
+@media (min-width: 993px) {
+  .card {
+    max-width: 1200px; /* Adjust max width for extra-large screens */
+  }
+}
+
+.card {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 25px;
+  width: auto px;
+  height: auto px;
+  max-width: 750px;
+  margin-bottom: 90px;
+
+}
+
+
+.card-header-about {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-title-about {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.card-body-about {
+  margin-top: 20px;
+}
+
+.card-text-about {
+  margin-bottom: 20px;
+}
+
+.lead-about {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

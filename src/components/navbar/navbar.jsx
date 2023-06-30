@@ -25,9 +25,12 @@ const Navbar = () => {
       <ul className="navbar-list">
         <li className="menuListItem">
           <div className="iconContainer">
-            <FontAwesomeIcon icon={faSwatchbook} className="icon"/>
+            {/* <FontAwesomeIcon icon={faSwatchbook} className="icon"/> */}
             <Link to="/books" className="menuLink">
-              Books
+            <FontAwesomeIcon icon={faSwatchbook} className="icon"/>
+            </Link>
+            <Link to="/about">
+              Contact
             </Link>
           </div>
         </li>
