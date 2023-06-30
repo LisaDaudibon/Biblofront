@@ -13,9 +13,8 @@
 }
 
 .profiletitle {
-  position: absolute;
-  top: 20px;
-  justify-self: center;
+  display: grid;
+  justify-content: center;
   font-size: 40px;
 }
 
