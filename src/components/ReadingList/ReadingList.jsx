@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAtomValue } from 'jotai';
-import { loggedInAtom } from '../atoms/loggedInAtom';
-import { userIdAtom } from '../atoms/userIdAtom';
+import { loggedInAtom } from '../../atoms/loggedInAtom';
+import { userIdAtom } from '../../atoms/userIdAtom';
+import './readingliststyle.css';
 
 const ReadingList = () => {
   const loggedIn = useAtomValue(loggedInAtom);
   const userId = useAtomValue(userIdAtom);
-  const [readingItems, setReadingItems] = useState('');
   const [books, setBooks] = useState([]);
   const isFirstRender = useRef(true);
 
@@ -18,7 +18,8 @@ const ReadingList = () => {
           return;
         }
 
-        const url = `http://bibloback.fly.dev/reading_lists/${userId}/books`;
+        const url = `https://bibloback.fly.dev/reading_lists/${userId}/books`;
+        // const url = `http://localhost::3000/reading_lists/${userId}/books`
 
         fetch(url, {
           method: 'GET',
@@ -31,7 +32,7 @@ const ReadingList = () => {
             if (response.ok) {
               return response.json();
             } else {
-              throw new Error('Error fetching reading items');
+              throw new Error("Nous ne pouvons accéder à la base de donnée ! Veuillez nous excuser pour la gêne occasionnée");
             }
           })
           .then(data => {
@@ -40,10 +41,10 @@ const ReadingList = () => {
             setBooks(books);
           })
           .catch(error => {
-            console.error('Error fetching reading items:', error);
+            console.error("Erreur lors de la récupération des données !", error);
           });
       } catch (error) {
-        console.error('Error fetching reading items:', error);
+        console.error("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !", error);
       }
     };
 
@@ -58,7 +59,6 @@ const ReadingList = () => {
 
   return (
     <div>
-      <h2>Reading List:</h2>
       <ul>
         {/* Iterate over the 'books' array and render the titles */}
         {books.length > 0 ? (

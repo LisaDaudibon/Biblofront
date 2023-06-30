@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
+import ReadingList from '../ReadingList/ReadingList';
 import Logout from '../logout/logout';
 import './getmember.css';
 
@@ -36,7 +37,7 @@ function Getmember() {
           setProfilpassword(data.user.password)
         }
       } catch (error) {
-        setError("Le serveur est indisponible pour l'instant, veuillez réessayer ! ");
+        setError("Le serveur est indisponible pour l'instant, veuillez essayer dans quelques instants ! ");
       }
     };
     if (loggedIn) {
@@ -46,27 +47,33 @@ function Getmember() {
 
 
   return (
-    <>
+    <div >
       <h2 className='profiletitle'>Mon profil</h2>
-      <div className='profilecard'>
-        {error && <p>{error}</p>}
-        <p id="profilecardtitle">Hello {profilpseudo} </p>
-        <div id='profilecardinfo'>
-          Email : {profilemail}
-          <br></br><br></br>
-          Pseudo : {profilpseudo}
-          <br></br><br></br>
-          Password : {profilpassword} ******
+      <div id='profile-container'>
+        <div className='profilecard'>
+          {error && <p>{error}</p>}
+          <h3 id="profilecardtitle">Hello {profilpseudo} </h3>
+          <div id='profilecardinfo'>
+            Email : {profilemail}
+            <br></br><br></br>
+            Pseudo : {profilpseudo}
+            <br></br><br></br>
+            Password : {profilpassword} ******
+            <br></br>
+            <br></br>
+            <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span><br></br>
+            <span>modifier tes données, tu peux nous contacter ici : </span><br></br>
+            <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
+          </div>
           <br></br>
-          <br></br>
-          <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span><br></br>
-          <span>modifier tes données, tu peux nous contacter ici : </span><br></br>
-          <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
+          <div id='logout'><Logout /></div>
         </div>
-        <br></br>
-        <div id='logout'><Logout /></div>
+        <div id="readinglistcontainer">
+          <h2 id="readinglisttitle">Reading List:</h2>
+          <ReadingList />
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
