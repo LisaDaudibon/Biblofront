@@ -6,16 +6,17 @@ import LogoFooter from './footerLogo';
 import './footer.css';
 
 const Footer = () => {
-  const isSmallDevice = window.innerWidth <= 600; // Adjust the breakpoint as per your requirements
+  const isSmallDevice = window.innerWidth <= 600;
 
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-content">
-          <div className="footer-logo">
+          
+          <div className="footer-links">
+            <ul><div className="footer-logo">
             <LogoFooter />
-            <div className="footer-links">
-            <ul>
+          </div>
               <li>
                 <a href="/books">
                   {isSmallDevice ? (
@@ -66,8 +67,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          </div>
-          
         </div>
       </div>
     </footer>
