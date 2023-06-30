@@ -8,15 +8,12 @@ import './signinstyle.css';
 function SigninForm() {
   const setUsertoken = useSetAtom(userTokenAtom);
   const setUserid = useSetAtom(userIdAtom)
-  const [email, setEmail] = useState('');
-  const [pseudo, setPseudo] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "" };
   const [formValues, setFormValues] = useState(InitialValues);
-  const [formErrors, setFormErrors] = useState({})
+  const [formErrors] = useState({})
   const [, setisSubmit] = useState(false)
 
   const handleChange = (event) =>{

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useSetAtom, useAtomValue } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
 import { Link } from "react-router-dom";

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
-import './readingliststyle.css';
 
 const ReadingList = () => {
   const loggedIn = useAtomValue(loggedInAtom);
