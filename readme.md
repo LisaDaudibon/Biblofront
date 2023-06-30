@@ -1,6 +1,14 @@
 # Projet Bibliophilea
 ### Projet final pour The Hacking Project
 
+## Découpage du projet
+Le front a été créé avec Vite et utilise React et Javascript. Le back a été créé en utilisant Rails. <br>
+<br>
+Lien du front du site en production : https://biblofront.vercel.app/ <br>
+Lien du back du site en production : https://bibloback.fly.dev/<br>
+<br>
+Vous vous trouvez dans le front. 
+
 ## Description
 Bienvenue sur notre plateforme dédiée aux passionnés de livres ! Que vous soyez un lecteur avide à la recherche de nouvelles découvertes ou un bibliophile désireux d'explorer une vaste bibliothèque virtuelle, vous êtes au bon endroit.
 
