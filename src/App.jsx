@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState,  useEffect } from 'react';
 import SignUp from './pages/signup';
@@ -6,66 +7,28 @@ import Home from './pages/home';
 import Profile from './pages/profile';
 import Books from './pages/Books/books';
 import Navbar from './components/navbar/navbar';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { bookCountAtom } from './atoms/bookAtom';
-import { loggedInAtom } from './atoms/loggedInAtom';
+import About from './components/contact/contact';
+import Footer from './components/footer/footer';
 import './App.css';
 
-
 function App() {
-  const setCount = useSetAtom(bookCountAtom);
-  const loggedIn = useAtomValue(loggedInAtom);
-  const [setError] = useState('');
-
-  useEffect(() => {
-    console.log("loggedIn value:", loggedIn);
-
-    const getcount = async () => {
-      try {
-
-        const response = await fetch('https://bibloback.fly.dev/books', {
-          method: 'GET',
-          headers: {
-          "Content-Type": "application/json",
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const last = data.length
-          setCount(last)
-        } else {
-          setError('Erreur de récupération des données');
-        }
-      } catch (error) {
-        setError('Erreur!');
-      }
-    };
-    if (loggedIn) {
-    getcount() }// Call the profile function to fetch the data
-
-  }, [loggedIn]);
 
   return (
     <div>
-    <BrowserRouter>
-    <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/users' element={<SignUp />} />
-        <Route path='/users/sign_in' element={<SignIn />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/books' element={<Books />} /> 
-        {/* <Route path='/' element={}> /> */}
-        {/* <Route path='/' element={}> /> */}
-        {/* <Route path='/' element={}> /> */}
-      </Routes>
-    </BrowserRouter>
-
-      {/* <BooksSearch> */}
-
-      {/* </BooksSearch> */}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<SignUp />} />
+          <Route path="/users/sign_in" element={<SignIn />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
-)}
+  );
+}
 
-export default App
+export default App;
