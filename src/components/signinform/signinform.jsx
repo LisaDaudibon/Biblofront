@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
@@ -14,12 +14,40 @@ function SigninForm() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  const InitialValues = { email: "",  pseudo: "", password: "" };
+  const [formValues, setFormValues] = useState(InitialValues);
+  const [formErrors, setFormErrors] = useState({})
+  const [, setisSubmit] = useState(false)
+
+  const handleChange = (event) =>{
+    const { id, value } = event.target
+
+    setFormValues({...formValues, [id] : value })
+
+    console.log(formValues)
+
+  }
+
+  useEffect(() => {
+    console.log(formErrors)
+    if (Object.keys(formErrors).length === 0 && setisSubmit){
+      console.log(formValues)
+    }
+
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
     setSuccess('');
+    setisSubmit(true)
+
+    const email = formValues.email;
+    const pseudo = formValues.pseudo
+    const password = formValues.password;
 
     const url = 'https://bibloback.fly.dev/users/sign_in'
+    // const url = 'http://localhost:3000/users/sign_in'
 
     try {
       const response = await fetch(url, {
@@ -43,11 +71,12 @@ function SigninForm() {
         setUserid(responseData.user.id);
 
        setSuccess('Login avec succès!'); // Set success flash message
-      } else { 
-        setError('Erreur lors du login!');
+      } else {
+        setError("L'email, le pseudo et le mot de passe ne correspondent pas ! Rééssaie ! ");
+        console.log("Setting error message");
       }
     } catch (error) {
-      setError('Erreur lors de la tentative de connection!');
+      setError("Le serveur n'est pas accessible pour le moment, veuillez réessayer plus tard");
     }
     // <disconnectUser /> aller chercher dans la branche getmembers 
   };
@@ -63,22 +92,9 @@ function SigninForm() {
         <input
           type="email"
           id="email"
-          value={email}
+          value={formValues.email}
           placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <br></br>
-      <div>
-        <label htmlFor="pseudo">Pseudo :   </label>
-        <br></br>
-        <input
-          type="text"
-          id="pseudo"
-          placeholder="pseudo"
-          value={pseudo}
-          onChange={(e) => setPseudo(e.target.value)}
+          onChange={handleChange}
           required
         />
       </div>
@@ -89,9 +105,9 @@ function SigninForm() {
         <input
           type="password"
           id="password"
-          value={password}
+          value={formValues.password}
           placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
           required
         />
       </div>
@@ -100,6 +116,9 @@ function SigninForm() {
       <br></br>
       <p className="signUpLink"> Tu n'as pas de compte ? <Link to="/users">Inscris-toi</Link></p>
 
+      <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span>
+      <span>modifier tes données, tu peux nous contacter ici : </span>
+      <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
     </form>
   );
 }
