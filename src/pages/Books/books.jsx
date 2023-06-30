@@ -74,14 +74,11 @@ const Books = () => {
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
-    // setBookTitle(book.volumeInfo.title)
   };
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
     resetBookinfos(null);
-    //setBookTitle(null);
-
   };
 
   const renderBooks = () => {
