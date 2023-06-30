@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../../atoms/bookAtom';
+import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom, bookCountAtom } from '../../atoms/bookAtom';
 import AddToReadingItem from '../../components/AddToReadingItemButton';
+import { loggedInAtom } from '../../atoms/loggedInAtom';
 
 const BookDetails = ({ book, onCloseDetails }) => {
   const bookTitle = useAtomValue(bookTitleAtom)
@@ -14,6 +15,10 @@ const BookDetails = ({ book, onCloseDetails }) => {
   const setBookPages = useSetAtom(bookPagesAtom);
   const bookCategory = useAtomValue(bookCategoryAtom)
   const setBookCategory = useSetAtom(bookCategoryAtom);
+  const bookCount = useAtomValue(bookCountAtom)
+  const setBookCount = useSetAtom(bookCountAtom);
+  const loggedIn = useAtomValue(loggedInAtom);
+  const [setError] = useState('');
 
   useEffect(() => {
     const setBookInfo = (book) => {
@@ -24,8 +29,35 @@ const BookDetails = ({ book, onCloseDetails }) => {
       setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0] || "Autre");
     };
 
+    const getcount = async () => {
+      try {
+
+        const url = 'https://bibloback.fly.dev/books'
+        // const url = 'http://localhost:3000/books'
+
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+          "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const last = data.length
+          setBookCount(last)
+        } else {
+          setError('Erreur de récupération des données');
+        }
+      } catch (error) {
+        setError('Erreur!');
+      }
+    };
+    if (loggedIn) {
+    getcount() }
+
     setBookInfo(book);
-  }, [ bookTitle, bookAuthor, bookPublishedDate, bookPages, bookCategory ]);
+  }, [ bookTitle, bookAuthor, bookPublishedDate, bookPages, bookCategory, bookCount, loggedIn ]);
 
   return (
     <div className="book-details">

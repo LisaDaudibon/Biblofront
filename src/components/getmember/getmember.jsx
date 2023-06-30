@@ -12,7 +12,6 @@ function Getmember() {
   const [profilpseudo, setProfilpseudo] = useState("");
   const [profilpassword, setProfilpassword] = useState("");
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     setError ('');
@@ -21,6 +20,7 @@ function Getmember() {
       try {
 
         const url = 'https://bibloback.fly.dev/member-data'
+        // const url = 'http://localhost:3000/member-data'
 
         const response = await fetch(url, {
           method: 'GET',
@@ -36,10 +36,10 @@ function Getmember() {
           setProfilpseudo(data.user.pseudo);
           setProfilpassword(data.user.password)
         } else {
-          setError('Erreur de récupération des données');
+          setError('Il y a problème avec la demande');
         }
       } catch (error) {
-        setError('Erreur!');
+        setError("Le serveur est indisponible pour l'instant, veuillez réessayer ! ");
       }
     };
     if (loggedIn) {
@@ -53,19 +53,15 @@ function Getmember() {
       <h2 className='profiletitle'>Mon profil</h2>
       <div className='profilecard'>
         {error && <p>{error}</p>}
-        {success && <p>{success}</p>}
         <p id="profilecardtitle">Hello {profilpseudo} </p>
         <div id='profilecardinfo'>
           Email : {profilemail}
-          <br></br>
-          <br></br>
+          <br></br><br></br>
           Pseudo : {profilpseudo}
-          <br></br>
-          <br></br>
+          <br></br><br></br>
           Password : {profilpassword} ******
         </div>
-        <br></br>
-        <br></br>
+        <br></br><br></br>
         <div id='logout'><Logout /></div>
       </div>
     </>
