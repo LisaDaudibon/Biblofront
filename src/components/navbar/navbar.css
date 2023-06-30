@@ -2,7 +2,7 @@
 
 .navbar {
   width: 100%;
-  background-color: #050505;
+  background-color: #121111;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@
 
 .navbar-list li a,
 .navbar-list button {
-  color: #fff;
+  color: #2B817B;
   text-decoration: none;
   padding: 10px;
   display: flex;
@@ -37,12 +37,14 @@
 .navbar-list li a:hover {
   background-color: #555;
   border-radius: 10px;
+  
 }
 
 .navbar-list button {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 13px;
+  
 }
 
 .logo-container {
@@ -62,9 +64,35 @@
 }
 
 .menuLink {
-  opacity: 0; 
-  transition: opacity 0.3s ease;
+  color: #000; /* Set the color for the link text */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
 
+.menuLink .icon {
+  margin-right: 5px; /* Adjust the spacing between the icon and the link text */
+}
+
+@media (max-width: 600px) {
+  .navbar-list {
+    justify-content: center; /* Center the small icons on a phone device */
+  }
+  
+  .menuLink span {
+    display: none;
+    padding-right: 15px; /* Hide the link text on smaller devices */
+  }
+
+  .iconContainer {
+    justify-content: center; /* Center the icons when logo and logo name disappear */
+  }
+  
+  .logoContainer {
+    display: none; /* Hide the logo container on smaller devices */
+  } /* Center the icons when logo and logo name disappear */
+  
+  
 }
 
 .iconContainer:hover .menuLink {
@@ -81,6 +109,10 @@
   color : rgb(186, 124, 30) ;
   }
 
+.menuLink:hover .icon {
+    color: rgb(186, 124, 30);
+  }
+  
 .menuListItem {
   flex: 4;
   display: flex;
