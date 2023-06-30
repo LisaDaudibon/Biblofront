@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../../assets/logo.png'
-import nameLogo from '../../assets/nameLogo.png'
+// import nameLogo from '../../assets/nameLogo.png'
+import './footer.css';
 
 class LogoFooter extends Component {
   render() {
