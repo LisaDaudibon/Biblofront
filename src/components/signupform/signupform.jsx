@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
@@ -14,8 +14,10 @@ function SignupForm () {
   const InitialValues = { email: "",  pseudo: "", password: "", password_confirmation:""};
   const [formValues, setFormValues] = useState(InitialValues);
   const [formErrors, setFormErrors] = useState({})
-  const [isSubmit, setisSubmit] = useState(false)
+  const [, setisSubmit] = useState(false)
+  const isFirstRender = useRef(true);
   const [usersPseudo, setUsersPseudo] = useState([])
+  const [usersEmail, setUsersEmail] = useState([])
 
   const handleChange = (event) =>{
     const { id, value } = event.target
@@ -27,14 +29,22 @@ function SignupForm () {
   }
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     console.log(formErrors)
     if (Object.keys(formErrors).length === 0 && setisSubmit){
       console.log(formValues)
     }
 
+    const url = 'https://bibloback.fly.dev/member-datas'
+    // const url = 'http://localhost:3000/member-datas'
+
     const getalluserspseudo = async () => {
       try {
-        const response = await fetch('http://localhost:3000/member-datas', {
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
@@ -43,10 +53,10 @@ function SignupForm () {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data)
           const usersPseudoarray = data.map((user) => user.pseudo)
-          console.log(usersPseudoarray)
+          const usersEmailarray = data.map((user) => user.email)
           setUsersPseudo(usersPseudoarray)
+          setUsersEmail(usersEmailarray)
         } else {
           setError('Erreur de récupération des données');
         }
@@ -55,7 +65,7 @@ function SignupForm () {
       }
     };
     getalluserspseudo();
-  })
+  }, []);
 
   const validates = (values) => {
     const errors = {}
@@ -67,10 +77,17 @@ function SignupForm () {
     } else if (values.password.length > 128) {
       errors.password = "Le mot de passe doit faire moins de 128 caractères"
     }
+
+    if (usersPseudo.includes(values.pseudo)) {
+      errors.pseudo = "Le pseudo est déjà utilisé";
+    }
+
+    if (usersEmail.includes(values.email)) {
+      errors.email = "L'email est déjà utilisé";
+    }
+
     return errors
   }
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,6 +102,7 @@ function SignupForm () {
     const password_confirmation = formValues.password_confirmation;
 
     const url = 'https://bibloback.fly.dev/users'
+    // const url = 'http://localhost:3000/users'
 
     try {
       const response = await fetch(url, {
@@ -118,12 +136,16 @@ function SignupForm () {
     // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
 
+  console.log(error)
+  console.log(success)
+
   return (
     <form className="signinform" onSubmit={handleSubmit}>
       <h2 className='signintitle'>Crée ton compte</h2>
       <div>
         <label htmlFor="email">Email :   </label>
         <br></br>
+        <p> { formErrors.email }</p>
         <input
           type="email"
           id="email"
@@ -134,6 +156,7 @@ function SignupForm () {
         />
       </div>
       <br></br>
+      <p> {formErrors.pseudo} </p>
       <div>
         <label htmlFor="pseudo">Pseudo :   </label>
         <br></br>
