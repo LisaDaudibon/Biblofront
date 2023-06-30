@@ -199,6 +199,10 @@ function SignupForm () {
       <br></br>
       <button type="submit">Créer un compte</button>
       <p className="signInLink"> Tu as déjà un compte ? <Link to="/users/sign_in">Connecte-toi !</Link></p>
+
+      <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span>
+      <span>modifier tes données, tu peux nous contacter ici : </span>
+      <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
     </form>
   );
 }

@@ -15,7 +15,6 @@ function Getmember() {
 
   useEffect(() => {
     setError ('');
-    setSuccess('')
     const getprofile = async () => {
       try {
 
@@ -35,8 +34,6 @@ function Getmember() {
           setProfilemail(data.user.email)
           setProfilpseudo(data.user.pseudo);
           setProfilpassword(data.user.password)
-        } else {
-          setError('Il y a problème avec la demande');
         }
       } catch (error) {
         setError("Le serveur est indisponible pour l'instant, veuillez réessayer ! ");
@@ -60,8 +57,13 @@ function Getmember() {
           Pseudo : {profilpseudo}
           <br></br><br></br>
           Password : {profilpassword} ******
+          <br></br>
+          <br></br>
+          <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span><br></br>
+          <span>modifier tes données, tu peux nous contacter ici : </span><br></br>
+          <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
         </div>
-        <br></br><br></br>
+        <br></br>
         <div id='logout'><Logout /></div>
       </div>
     </>

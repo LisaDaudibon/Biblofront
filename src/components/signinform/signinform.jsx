@@ -73,7 +73,6 @@ function SigninForm() {
        setSuccess('Login avec succès!'); // Set success flash message
       } else {
         setError("L'email, le pseudo et le mot de passe ne correspondent pas ! Rééssaie ! ");
-        console.log("Setting error message");
       }
     } catch (error) {
       setError("Le serveur n'est pas accessible pour le moment, veuillez réessayer plus tard");

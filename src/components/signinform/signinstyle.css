@@ -7,7 +7,7 @@
   padding: 10px;
   box-shadow: 10px 5px #3d3d3d;
   border-radius: 25px;
-  margin-top: 100px;
+  margin-top: 120px;
   margin-bottom: 100px;
   overflow-y: auto; /* Add a vertical scrollbar if the content exceeds the container height */
 }
