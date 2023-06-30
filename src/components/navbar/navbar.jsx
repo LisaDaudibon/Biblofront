@@ -52,10 +52,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/books" className="menuLink" title="Contact">
-                  <FontAwesomeIcon icon={faHome} className="icon" />
-                  <span>Home</span>
-                </Link>
+              
                 <Link to="/books" className="menuLink" title="Books">
                   <FontAwesomeIcon icon={faBookBookmark} className="icon" />
                   <span>Books</span>
