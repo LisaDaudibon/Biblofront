@@ -75,7 +75,7 @@ function SigninForm() {
         setError("L'email, le pseudo et le mot de passe ne correspondent pas ! Rééssaie ! ");
       }
     } catch (error) {
-      setError("Le serveur n'est pas accessible pour le moment, veuillez réessayer plus tard");
+      setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
     }
     // <disconnectUser /> aller chercher dans la branche getmembers 
   };

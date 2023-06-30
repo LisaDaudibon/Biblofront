@@ -9,7 +9,6 @@ function SignupForm () {
   const setUsertoken = useSetAtom(userTokenAtom);
   const setUserid = useSetAtom(userIdAtom)
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "", password_confirmation:""};
   const [formValues, setFormValues] = useState(InitialValues);
@@ -21,11 +20,9 @@ function SignupForm () {
 
   const handleChange = (event) =>{
     const { id, value } = event.target
-
     setFormValues({...formValues, [id] : value })
 
     console.log(formValues)
-
   }
 
   useEffect(() => {
@@ -61,7 +58,7 @@ function SignupForm () {
           setError('Erreur de récupération des données');
         }
       } catch (error) {
-        setError('Erreur!');
+        setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
       }
     };
     getalluserspseudo();
@@ -92,7 +89,6 @@ function SignupForm () {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
-    setSuccess('');
     setFormErrors(validates(formValues));
     setisSubmit(true)
 
@@ -125,19 +121,14 @@ function SignupForm () {
         setUsertoken(token);
         const responseData = await response.json();
         setUserid(responseData.user.id);
-
-        setSuccess('Compte créé avec succès!'); // Set success flash message
-      } else {
-        setError("Erreur lors de l'enregistrement du compte");
       }
     } catch (error) {
-      setError('Erreur lors de la création du compte');
+      setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
     }
     // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
 
   console.log(error)
-  console.log(success)
 
   return (
     <form className="signinform" onSubmit={handleSubmit}>
