@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState,  useEffect } from 'react';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Home from './pages/home';
@@ -11,6 +12,7 @@ import Footer from './components/footer/footer';
 import './App.css';
 
 function App() {
+
   return (
     <div>
       <BrowserRouter>
