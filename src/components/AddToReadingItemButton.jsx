@@ -57,6 +57,7 @@ const AddToReadingItem = (ReadingItem) => {
           const ids = data.map((book) => book.id);
 
           setBookData({ titles, ids });
+
         } else {
           setError('Erreur de récupération des données');
         }
@@ -135,7 +136,7 @@ const AddToReadingItem = (ReadingItem) => {
           // const bookData = await bookResponse.json();
           const newBookId = bookcount;
           setbookId(newBookId);
-          setSuccess('Book saved');
+          setSuccess('Livre enregistré')
           createReadingItem(); // Create reading item after book is saved
         } else {
           setError('Error saving book first');
@@ -144,20 +145,20 @@ const AddToReadingItem = (ReadingItem) => {
         setError('Error saving book second');
       } finally {
         setLoading(false);
-      }} 
-    // } else {
-    //   setLoading(true);
-    //   createReadingItem(); // Create reading item directly if bookId exists
-    // }
+      }
+    } else {
+      setLoading(true);
+      createReadingItem(); // Create reading item directly if bookId exists
+    }
   };
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
       <button id="addtori" onClick={handleSubmit} disabled={loading}>
         {loading ? 'Loading...' : 'Ajouter'}
       </button>
+      {error && <p>{error}</p>}
+      {success && <p>{success}</p>}
     </div>
   );
 };
