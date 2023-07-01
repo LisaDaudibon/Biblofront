@@ -1,69 +1,92 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../logout/logout';
+import SignIn from '../../pages/signin';
 import './navbar.css';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
-import Logo from './logo'
+import Logo from './logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { faBookBookmark } from '@fortawesome/free-solid-svg-icons';
-import { faSwatchbook } from '@fortawesome/free-solid-svg-icons';
-
+import { faBookBookmark, faUser, faEnvelope, faHome, faSignOut, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
-
   const loggedIn = useAtomValue(loggedInAtom);
+  const isMobile = window.innerWidth <= 600;
 
   return (
     <nav className="navbar">
-      <div className='logoContainer'>
+      <div className="logoContainer">
         <a href="/books" className="logoLink">
-          <Logo/>
+          <Logo />
         </a>
       </div>
       <ul className="navbar-list">
         <li className="menuListItem">
           <div className="iconContainer">
-            {/* <FontAwesomeIcon icon={faSwatchbook} className="icon"/> */}
-            <Link to="/books" className="menuLink">
-            <FontAwesomeIcon icon={faSwatchbook} className="icon"/>
-            </Link>
-            <Link to="/about">
-              Contact
-            </Link>
+            {isMobile ? (
+              <>
+                <Link to="/books" className="menuLink">
+                  <FontAwesomeIcon icon={faBookBookmark} className="icon" title="Books" />
+                  <span>Books</span>
+                </Link>
+                {loggedIn ? (
+                  <>
+                    <Link to="/profile" className="menuLink">
+                      <FontAwesomeIcon icon={faUser} className="icon" title="Profile" />
+                      <span>Profile</span>
+                    </Link>
+                    <Link to="/about" className="menuLink">
+                      <FontAwesomeIcon icon={faEnvelope} className="icon" title="Contact" />
+                      <span>Contact</span>
+                    </Link>
+                    <div className="logoutWrapper">
+                      <Logout />
+                    </div>
+                  </>
+                ) : (
+                  <Link to="/users/sign_in" className="menuLink">
+                    <FontAwesomeIcon icon={faSignInAlt} className="icon" title="Sign In" />
+                    <span>Sign In</span>
+                  </Link>
+                )}
+              </>
+            ) : (
+              <>
+              
+                <Link to="/books" className="menuLink" title="Books">
+                  <FontAwesomeIcon icon={faBookBookmark} className="icon" />
+                  <span>Books</span>
+                </Link>
+                {loggedIn ? (
+                  <>
+                    <Link to="/profile" className="menuLink" title="Profile">
+                      <FontAwesomeIcon icon={faUser} className="icon" />
+                      <span>Profile</span>
+                    </Link>
+                    <Link to="/about" className="menuLink" title="Contact">
+                      <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                      <span>Contact</span>
+                    </Link>
+                    <div className="logoutWrapper">
+                      <Logout />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/profile" className="menuLink" title="Sign In">
+                      <FontAwesomeIcon icon={faSignInAlt} className="icon" />
+                      <span>Sign In</span>
+                    </Link>
+                    <Link to="/about" className="menuLink" title="Contact">
+                      <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                      <span>Contact</span>
+                    </Link>
+                  </>
+                )}
+              </>
+            )}
           </div>
         </li>
-        {loggedIn? (
-          <>
-          <li>
-          <Link to="/profile">
-            Profile
-          </Link>
-        </li>
-        <li>
-          <Logout />
-        </li>
-        </>
-        ) : (
-          <>
-        <li className="menuListItem">
-          <div className="iconContainer">
-            <FontAwesomeIcon icon={faBookBookmark} className="icon"/>
-            <Link to="/users" className="menuLink">
-              S'inscrire
-            </Link>
-          </div>
-        </li>
-        <li className="menuListItem">
-          <div className="iconContainer">
-            <FontAwesomeIcon icon={faBookOpen} className="icon"/>
-            <Link to="/users/sign_in" className="menuLink loginLink">
-              Se connecter
-            </Link>
-          </div>
-        </li></>
-        )}
       </ul>
     </nav>
   );
