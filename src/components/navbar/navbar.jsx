@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../logout/logout';
-import SignIn from '../../pages/signin';
 import './navbar.css';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
@@ -44,15 +43,20 @@ const Navbar = () => {
                     </div>
                   </>
                 ) : (
-                  <Link to="/users/sign_in" className="menuLink">
-                    <FontAwesomeIcon icon={faSignInAlt} className="icon" title="Sign In" />
-                    <span>Sign In</span>
-                  </Link>
+                  <>
+                    <Link to="/users/sign_in" className="menuLink">
+                      <FontAwesomeIcon icon={faSignInAlt} className="icon" title="Sign In" />
+                      <span>Sign In</span>
+                    </Link>
+                    <Link to="/users" className="menuLink">
+                      <FontAwesomeIcon icon={faUser} className="icon" title="Sign Up" />
+                      <span>S'inscrire</span>
+                    </Link>
+                  </>
                 )}
               </>
             ) : (
               <>
-              
                 <Link to="/books" className="menuLink" title="Books">
                   <FontAwesomeIcon icon={faBookBookmark} className="icon" />
                   <span>Books</span>
@@ -73,13 +77,13 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <Link to="/profile" className="menuLink" title="Sign In">
+                    <Link to="/users/sign_in" className="menuLink" title="Sign In">
                       <FontAwesomeIcon icon={faSignInAlt} className="icon" />
                       <span>Sign In</span>
                     </Link>
-                    <Link to="/about" className="menuLink" title="Contact">
-                      <FontAwesomeIcon icon={faEnvelope} className="icon" />
-                      <span>Contact</span>
+                    <Link to="/users" className="menuLink" title="Sign Up">
+                      <FontAwesomeIcon icon={faUser} className="icon" />
+                      <span>S'inscrire</span>
                     </Link>
                   </>
                 )}
