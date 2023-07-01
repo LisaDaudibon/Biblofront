@@ -3,6 +3,8 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { bookTitleAtom, bookPublishedAtom, bookCountAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../atoms/bookAtom';
 import { bookIdAtom } from '../atoms/bookIdAtom';
 import { userIdAtom } from '../atoms/userIdAtom';
+import { loggedInAtom } from '../atoms/loggedInAtom';
+import { Link } from 'react-router-dom';
 import '../pages/Books/books.css';
 
 const getBookId = (bookData, bookTitle, setbookId) => {
@@ -26,6 +28,7 @@ const AddToReadingItem = () => {
   const setbookId = useSetAtom(bookIdAtom);
   const bookcount = useAtomValue(bookCountAtom);
   const setbookCount = useSetAtom(bookCountAtom);
+  const loggedIn = useAtomValue(loggedInAtom)
 
   const [bookData, setBookData] = useState({ titles: [], ids: [] });
   const [error, setError] = useState('');
@@ -167,12 +170,19 @@ const AddToReadingItem = () => {
 
   return (
     <div>
-      <button id="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
+      { loggedIn ? (
+        <>
+      <button className="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
         {loading ? 'Loading...' : 'Ajouter'}
       </button>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
-      {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}
+      {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}</>
+      ) : (
+        <>
+        <Link to="/users/sign_in" role="button" className="addtori button">Ajouter</Link>
+        </>
+      )}
     </div>
   );
 };
