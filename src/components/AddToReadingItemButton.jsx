@@ -15,7 +15,7 @@ const getBookId = (bookData, bookTitle, setbookId) => {
   }
 };
 
-const AddToReadingItem = (ReadingItem) => {
+const AddToReadingItem = () => {
   const bookTitle = useAtomValue(bookTitleAtom);
   const bookAuthor = useAtomValue(bookAuthorAtom);
   const bookPublishedDate = useAtomValue(bookPublishedAtom);
@@ -42,8 +42,10 @@ const AddToReadingItem = (ReadingItem) => {
 
     setLoading(true);
     const getBookDatabase = async () => {
+      // const url = 'http://localhost:3000/books'
+      const url = 'https://bibloback.fly.dev/books'
       try {
-        const response = await fetch('https://bibloback.fly.dev/books', {
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ const AddToReadingItem = (ReadingItem) => {
           const ids = data.map((book) => book.id);
 
           setBookData({ titles, ids });
+
         } else {
           setError('Erreur de récupération des données');
         }
@@ -74,8 +77,11 @@ const AddToReadingItem = (ReadingItem) => {
   }, [bookData, bookTitle, setbookId]);
 
   const createReadingItem = async () => {
+    // const urlri = 'http://localhost:3000/reading_items'
+    const url = 'https://bibloback.fly.dev/reading_items'
+
     try {
-      const readingItemResponse = await fetch('https://bibloback.fly.dev/reading_items', {
+      const readingItemResponse = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,12 +96,12 @@ const AddToReadingItem = (ReadingItem) => {
       });
 
       if (readingItemResponse.ok) {
-        setSuccess('Reading item saved');
+        setSuccess("Livre sauvegardé dans ta liste de lecture !");
       } else {
-        setError('Error saving reading item first');
+        setError("Erreur lors de l'enregistrement dans la base de données");
       }
     } catch (error) {
-      setError('Error saving reading item second');
+      setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
     } finally {
       setLoading(false);
     }
@@ -113,7 +119,7 @@ const AddToReadingItem = (ReadingItem) => {
     if (bookId === null) {
       setLoading(true);
       try {
-        const bookResponse = await fetch('https://bibloback.fly.dev/books', {
+        const bookResponse = await fetch('http://localhost:3000/books', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -133,29 +139,29 @@ const AddToReadingItem = (ReadingItem) => {
           // const bookData = await bookResponse.json();
           const newBookId = bookcount;
           setbookId(newBookId);
-          setSuccess('Book saved');
+          setSuccess('Livre enregistré')
           createReadingItem(); // Create reading item after book is saved
         } else {
-          setError('Error saving book first');
+          setError("Les données sont incorrectes! Veuillez essayer dans quelques instants");
         }
       } catch (error) {
-        setError('Error saving book second');
+        setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
       } finally {
         setLoading(false);
-      }} 
-    // } else {
-    //   setLoading(true);
-    //   createReadingItem(); // Create reading item directly if bookId exists
-    // }
+      }
+    } else {
+      setLoading(true);
+      createReadingItem(); // Create reading item directly if bookId exists
+    }
   };
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
       <button id="addtori" onClick={handleSubmit} disabled={loading}>
         {loading ? 'Loading...' : 'Ajouter'}
       </button>
+      {error && <p>{error}</p>}
+      {success && <p>{success}</p>}
     </div>
   );
 };

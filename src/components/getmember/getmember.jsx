@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
+import ReadingList from '../readinglist/ReadingList';
 import Logout from '../logout/logout';
 import './getmember.css';
 
@@ -12,15 +13,16 @@ function Getmember() {
   const [profilpseudo, setProfilpseudo] = useState("");
   const [profilpassword, setProfilpassword] = useState("");
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     setError ('');
-    setSuccess('')
     const getprofile = async () => {
       try {
 
-        const response = await fetch('https://bibloback.fly.dev/member-data', {
+        const url = 'https://bibloback.fly.dev/member-data'
+        // const url = 'http://localhost:3000/member-data'
+
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
           "Authorization": `${usertoken}`,
@@ -33,11 +35,9 @@ function Getmember() {
           setProfilemail(data.user.email)
           setProfilpseudo(data.user.pseudo);
           setProfilpassword(data.user.password)
-        } else {
-          setError('Erreur de récupération des données');
         }
       } catch (error) {
-        setError('Erreur!');
+        setError("Le serveur est indisponible pour l'instant, veuillez essayer dans quelques instants ! ");
       }
     };
     if (loggedIn) {
@@ -47,26 +47,33 @@ function Getmember() {
 
 
   return (
-    <>
-      <h2 className='profiletitle'>Mon profil</h2>
-      <div className='profilecard'>
-        {error && <p>{error}</p>}
-        {success && <p>{success}</p>}
-        <p id="profilecardtitle">Hello {profilpseudo} </p>
-        <div id='profilecardinfo'>
-          Email : {profilemail}
+    <div id="getmembercontainer">
+      <h1 className='profiletitle'>Mon profil</h1>
+      <div id='profile-container'>
+        <div className='profilecard'>
+          {error && <p>{error}</p>}
+          <h2 id="profilecardtitle">Hello {profilpseudo} </h2>
+          <div id='profilecardinfo'>
+            Email : {profilemail}
+            <br></br><br></br>
+            Pseudo : {profilpseudo}
+            <br></br><br></br>
+            Password : {profilpassword} ******
+            <br></br>
+            <br></br>
+            <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span><br></br>
+            <span>modifier tes données, tu peux nous contacter ici : </span><br></br>
+            <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
+          </div>
           <br></br>
-          <br></br>
-          Pseudo : {profilpseudo}
-          <br></br>
-          <br></br>
-          Password : {profilpassword} ******
+          <div id='logout'><Logout /></div>
         </div>
-        <br></br>
-        <br></br>
-        <div id='logout'><Logout /></div>
+        <div id="readinglistcontainer">
+          <h2 id="readinglisttitle">Ma liste de lecture</h2>
+          <ReadingList />
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

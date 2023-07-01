@@ -4,7 +4,7 @@ import './books.css';
 import BookDetails from './book';
 import { useSetAtom } from 'jotai';
 import { bookIdAtom } from '../../atoms/bookIdAtom';
-import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../../atoms/bookAtom';
+import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom, bookCountAtom } from '../../atoms/bookAtom';
 
 
 const Books = () => {
@@ -17,6 +17,7 @@ const Books = () => {
   const setAuthor = useSetAtom(bookAuthorAtom)
   const setCategory = useSetAtom(bookCategoryAtom)
   const setPages = useSetAtom(bookPagesAtom)
+  const setBookCount = useSetAtom(bookCountAtom);
 
   const resetBookinfos = () => {
     setbookId(null);
@@ -25,6 +26,7 @@ const Books = () => {
     setAuthor(null)
     setCategory(null)
     setPages(null)
+    setBookCount(null)
   };
 
   useEffect(() => {
@@ -72,14 +74,11 @@ const Books = () => {
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
-    // setBookTitle(book.volumeInfo.title)
   };
 
   const handleCloseDetails = () => {
     setSelectedBook(null);
     resetBookinfos(null);
-    //setBookTitle(null);
-
   };
 
   const renderBooks = () => {
