@@ -97,10 +97,11 @@
 
 #booktitlerl {
   grid-column: span 1;
+  align-self: center;
 }
 
 #deletebookfromrl {
-  margin-left: 20px;
+  margin: 0px;
   grid-column: span 1;
-  background-color: rgb(197, 16, 16);
+  background-color: darkred;
 }

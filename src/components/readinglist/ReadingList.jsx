@@ -67,7 +67,7 @@ const ReadingList = () => {
     // const selectedBook = books.find(book => book.id === bookId);
 
     // const url = `http://localhost:3000/reading_lists/${userId}/remove_book/${bookId}`;
-    const url = `https://bibloback.fly.dev/${userId}/remove_book/${bookId}`;
+    const url = `https://bibloback.fly.dev/reading_lists/${userId}/remove_book/${bookId}`;
 
     try {
       const deletebook = await fetch(url, {
@@ -92,12 +92,12 @@ const ReadingList = () => {
 
 
   return (
-    <div id="readinglistinfo">
+    <div >
       <ul>
         {/* Iterate over the 'books' array and render the titles */}
         {books.length > 0 ? (
           books.map(book => (
-            <li key={book.id}>
+            <li key={book.id} id="readinglistinfo">
               <div id="booktitlerl"> {book.title}</div>
               <button id="deletebookfromrl" onClick={event => handleClick(event, book.id)}>
                   <strong>Supprimer</strong>

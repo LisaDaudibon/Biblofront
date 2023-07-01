@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { bookTitleAtom, bookPublishedAtom, bookCountAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../atoms/bookAtom';
 import { bookIdAtom } from '../atoms/bookIdAtom';
-import { loggedInAtom } from '../atoms/loggedInAtom';
 import { userIdAtom } from '../atoms/userIdAtom';
 import '../pages/Books/books.css';
 
@@ -27,7 +26,6 @@ const AddToReadingItem = () => {
   const setbookId = useSetAtom(bookIdAtom);
   const bookcount = useAtomValue(bookCountAtom);
   const setbookCount = useSetAtom(bookCountAtom);
-  const loggedIn = useAtomValue(loggedInAtom);
 
   const [bookData, setBookData] = useState({ titles: [], ids: [] });
   const [error, setError] = useState('');
@@ -47,6 +45,7 @@ const AddToReadingItem = () => {
     const getBookDatabase = async () => {
       // const url = 'http://localhost:3000/books'
       const url = 'https://bibloback.fly.dev/books'
+
       try {
         const response = await fetch(url, {
           method: 'GET',
@@ -115,12 +114,13 @@ const AddToReadingItem = () => {
     setError('');
     setSuccess('');
 
-    // const url = 'http://localhost:3000/books'
-    const url = 'https//bibloback.fly.dev/books'
+
 
     if (bookId === null) {
       setbookCount((prevCount) => prevCount + 1);
     }
+
+    const url = 'https://bibloback.fly.dev/books'
 
     if (bookId === null) {
       setLoading(true);
