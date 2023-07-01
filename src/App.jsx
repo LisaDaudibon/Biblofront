@@ -9,6 +9,7 @@ import Books from './pages/Books/books';
 import Navbar from './components/navbar/navbar';
 import About from './components/contact/contact';
 import Footer from './components/footer/footer';
+import PageNotFound from './pages/404/404error';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/books" element={<Books />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
