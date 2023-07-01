@@ -32,6 +32,7 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  
 }
 
 .navbar-list li a:hover {
@@ -42,10 +43,15 @@
 
 .navbar-list button {
   margin-top: 5px;
-  margin-bottom: 5px;
+  background-color: darkred;
   font-size: 13px;
+  height: 40px;
+  width: 45px;
+  padding:0;
+
   
 }
+
 
 .logo-container {
   display: flex;
