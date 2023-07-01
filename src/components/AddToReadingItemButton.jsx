@@ -77,7 +77,7 @@ const AddToReadingItem = () => {
   }, [bookData, bookTitle, setbookId]);
 
   const createReadingItem = async () => {
-    // const urlri = 'http://localhost:3000/reading_items'
+    // const url = 'http://localhost:3000/reading_items'
     const url = 'https://bibloback.fly.dev/reading_items'
 
     try {
@@ -112,6 +112,9 @@ const AddToReadingItem = () => {
     setError('');
     setSuccess('');
 
+    // const url = 'http://localhost:3000/books'
+    const url = 'https//bibloback.fly.dev/books'
+
     if (bookId === null) {
       setbookCount((prevCount) => prevCount + 1);
     }
@@ -119,7 +122,7 @@ const AddToReadingItem = () => {
     if (bookId === null) {
       setLoading(true);
       try {
-        const bookResponse = await fetch('http://localhost:3000/books', {
+        const bookResponse = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
