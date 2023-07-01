@@ -32,8 +32,8 @@ const BookDetails = ({ book, onCloseDetails }) => {
     const getcount = async () => {
       try {
 
-        const url = 'https://bibloback.fly.dev/books'
-        // const url = 'http://localhost:3000/books'
+        // const url = 'https://bibloback.fly.dev/books'
+        const url = 'http://localhost:3000/books'
 
         const response = await fetch(url, {
           method: 'GET',

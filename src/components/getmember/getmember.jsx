@@ -19,8 +19,8 @@ function Getmember() {
     const getprofile = async () => {
       try {
 
-        const url = 'https://bibloback.fly.dev/member-data'
-        // const url = 'http://localhost:3000/member-data'
+        // const url = 'https://bibloback.fly.dev/member-data'
+        const url = 'http://localhost:3000/member-data'
 
         const response = await fetch(url, {
           method: 'GET',
@@ -48,12 +48,12 @@ function Getmember() {
 
   return (
     <div id="getmembercontainer">
-      <h1 className='profiletitle'>Mon profil</h1>
-      <div id='profile-container'>
-        <div className='profilecard'>
+      <h1 className="profiletitle">Mon profil</h1>
+      <div id="profile-container">
+        <div className="profilecard">
           {error && <p>{error}</p>}
           <h2 id="profilecardtitle">Hello {profilpseudo} </h2>
-          <div id='profilecardinfo'>
+          <div id="profilecardinfo">
             Email : {profilemail}
             <br></br><br></br>
             Pseudo : {profilpseudo}
@@ -66,11 +66,11 @@ function Getmember() {
             <a href="mailto:bibliophilea@yopmail.com">bibliophilea@yopmail.com</a>
           </div>
           <br></br>
-          <div id='logout'><Logout /></div>
+          <div id="logout"><Logout /></div>
         </div>
         <div id="readinglistcontainer">
           <h2 id="readinglisttitle">Ma liste de lecture</h2>
-          <ReadingList />
+            <ReadingList />
         </div>
       </div>
     </div>

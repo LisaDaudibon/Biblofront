@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { bookTitleAtom, bookPublishedAtom, bookCountAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom } from '../atoms/bookAtom';
 import { bookIdAtom } from '../atoms/bookIdAtom';
+import { loggedInAtom } from '../atoms/loggedInAtom';
 import { userIdAtom } from '../atoms/userIdAtom';
 import '../pages/Books/books.css';
 
@@ -25,13 +26,15 @@ const AddToReadingItem = () => {
   const bookId = useAtomValue(bookIdAtom);
   const setbookId = useSetAtom(bookIdAtom);
   const bookcount = useAtomValue(bookCountAtom);
-  const setbookCount = useSetAtom(bookCountAtom)
+  const setbookCount = useSetAtom(bookCountAtom);
+  const loggedIn = useAtomValue(loggedInAtom);
 
   const [bookData, setBookData] = useState({ titles: [], ids: [] });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const isFirstRender = useRef(true);
   const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState({ ids: [] })
 
 
   useEffect(() => {
@@ -42,8 +45,8 @@ const AddToReadingItem = () => {
 
     setLoading(true);
     const getBookDatabase = async () => {
-      // const url = 'http://localhost:3000/books'
-      const url = 'https://bibloback.fly.dev/books'
+      const url = 'http://localhost:3000/books'
+      // const url = 'https://bibloback.fly.dev/books'
       try {
         const response = await fetch(url, {
           method: 'GET',
@@ -74,11 +77,11 @@ const AddToReadingItem = () => {
 
   useEffect(() => {
     getBookId(bookData, bookTitle, setbookId);
-  }, [bookData, bookTitle, setbookId]);
+  }, [bookData, bookTitle, setbookId, books]);
 
   const createReadingItem = async () => {
-    // const url = 'http://localhost:3000/reading_items'
-    const url = 'https://bibloback.fly.dev/reading_items'
+    const url = 'http://localhost:3000/reading_items'
+    // const url = 'https://bibloback.fly.dev/reading_items'
 
     try {
       const readingItemResponse = await fetch(url, {
@@ -107,13 +110,13 @@ const AddToReadingItem = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const onClick = async (event) => {
     event.preventDefault();
     setError('');
     setSuccess('');
 
-    // const url = 'http://localhost:3000/books'
-    const url = 'https//bibloback.fly.dev/books'
+    const url = 'http://localhost:3000/books'
+    // const url = 'https//bibloback.fly.dev/books'
 
     if (bookId === null) {
       setbookCount((prevCount) => prevCount + 1);
@@ -158,13 +161,18 @@ const AddToReadingItem = () => {
     }
   };
 
+  const isBookInReadingList = () => {
+    return bookId !== null && bookData.ids.includes(bookId);
+  };
+
   return (
     <div>
-      <button id="addtori" onClick={handleSubmit} disabled={loading}>
+      <button id="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
         {loading ? 'Loading...' : 'Ajouter'}
       </button>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
+      {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}
     </div>
   );
 };
