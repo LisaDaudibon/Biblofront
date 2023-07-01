@@ -41,9 +41,10 @@
 }
 
 .navbar-list button {
-  margin-top: 5px;
-  margin-bottom: 5px;
   font-size: 13px;
+  height: 40px;
+  width: 45px;
+  padding:0;
   
 }
 
