@@ -72,7 +72,7 @@
 }
 
 #readinglistcontainer {
-  display:grid;
+  display: grid;
   border: 3px solid #e5e5e5;
   padding: 0 50px;
   box-shadow: 10px 5px #3d3d3d;
@@ -84,4 +84,24 @@
 #readinglisttitle {
   justify-self: center;
   color: #2B817B;
+}
+
+#readinglistinfo {
+  display: grid;
+  grid-template-columns: auto 120px;
+}
+
+#readinglistinfo ul {
+  display: grid;
+}
+
+#booktitlerl {
+  grid-column: span 1;
+  align-self: center;
+}
+
+#deletebookfromrl {
+  margin: 0px;
+  grid-column: span 1;
+  background-color: darkred;
 }

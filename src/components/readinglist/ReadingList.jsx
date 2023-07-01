@@ -2,13 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
-// import Deletefromreadinglist from './deletefromreadinglist';
+import '../../pages/Books/books.css'
+
 
 const ReadingList = () => {
   const loggedIn = useAtomValue(loggedInAtom);
   const userId = useAtomValue(userIdAtom);
-  const [books, setBooks] = useState([]);
+  const [ books, setBooks ] = useState([]);
   const isFirstRender = useRef(true);
+  const [isBookDeleted, setIsBookDeleted] = useState(false);
+
+  const [ error, setError ] = useState('')
 
   useEffect(() => {
     const fetchReadinglist = async () => {
@@ -57,16 +61,48 @@ const ReadingList = () => {
   }, [loggedIn, userId]);
 
 
+  const handleClick = async (event, bookId) => {
+    event.preventDefault();
+
+    // const selectedBook = books.find(book => book.id === bookId);
+
+    // const url = `http://localhost:3000/reading_lists/${userId}/remove_book/${bookId}`;
+    const url = `https://bibloback.fly.dev/reading_lists/${userId}/remove_book/${bookId}`;
+
+    try {
+      const deletebook = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (deletebook.ok) {
+        // Book deleted successfully
+        // Update the books state by filtering out the deleted book
+        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
+        setIsBookDeleted(true);
+        setSuccess('Livre supprimé de ta liste de lecture !');
+      } else {
+        setError("Je n'ai pas réussi à supprimer le livre ! Veuillez essayer dans quelques instants");
+      }
+    } catch (error) {
+      setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
+    }
+  };
+
+
   return (
-    <div>
+    <div >
       <ul>
         {/* Iterate over the 'books' array and render the titles */}
         {books.length > 0 ? (
-          books.map((book, index) => (
-            <>
-            <li key={index}>{book.title}</li>
-            {/* <Deletefromreadinglist bookId={book.id}/> */}
-            </>
+          books.map(book => (
+            <li key={book.id} id="readinglistinfo">
+              <div id="booktitlerl"> {book.title}</div>
+              <button id="deletebookfromrl" onClick={event => handleClick(event, book.id)}>
+                  <strong>Supprimer</strong>
+                </button>
+            </li>
           ))
         ) : (
           <li>No books found.</li>
