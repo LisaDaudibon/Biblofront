@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
@@ -32,18 +33,18 @@ const Footer = () => {
               <ul>
                 <div className='footer-logo'>
                   <LogoFooter />
-               </div>
+                </div>
                 <li>
-                  <a href="/books">
+                  <Link to="/books">
                     <FontAwesomeIcon icon={faBook} />
                     <span>Books</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/profile">
+                  <Link to="/profile">
                     <FontAwesomeIcon icon={faUser} />
                     <span>Profile</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="mailto:bibliophilea@yopmail.com">
