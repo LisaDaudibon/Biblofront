@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { userTokenAtom } from '../../atoms/userTokenAtom';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
-import ReadingList from '../ReadingList/ReadingList';
+import ReadingList from '../readinglist/ReadingList';
 import Logout from '../logout/logout';
 import './getmember.css';
 
@@ -47,12 +47,12 @@ function Getmember() {
 
 
   return (
-    <div >
-      <h2 className='profiletitle'>Mon profil</h2>
+    <div id="getmembercontainer">
+      <h1 className='profiletitle'>Mon profil</h1>
       <div id='profile-container'>
         <div className='profilecard'>
           {error && <p>{error}</p>}
-          <h3 id="profilecardtitle">Hello {profilpseudo} </h3>
+          <h2 id="profilecardtitle">Hello {profilpseudo} </h2>
           <div id='profilecardinfo'>
             Email : {profilemail}
             <br></br><br></br>
@@ -69,7 +69,7 @@ function Getmember() {
           <div id='logout'><Logout /></div>
         </div>
         <div id="readinglistcontainer">
-          <h2 id="readinglisttitle">Reading List:</h2>
+          <h2 id="readinglisttitle">Ma liste de lecture</h2>
           <ReadingList />
         </div>
       </div>
