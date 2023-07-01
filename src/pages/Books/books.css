@@ -14,7 +14,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 50px;
+  margin-top: 25px;
   margin-bottom: 90px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 25px;
+    padding: 0;
+  }
 }
 
 .books-card img {

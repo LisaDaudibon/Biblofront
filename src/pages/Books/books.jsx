@@ -112,7 +112,7 @@ const Books = () => {
 
   return (
     <div className="page-container">
-      <h2>Book Search</h2>
+      <h2>Cherche tes livres favoris !</h2>
       <div className="search-bar">
         <form onSubmit={handleSearch} className="search-form">
           <input
@@ -128,7 +128,6 @@ const Books = () => {
         </form>
       </div>
 
-      <h2>Search Results:</h2>
       {renderBooks()}
 
       {selectedBook && (
