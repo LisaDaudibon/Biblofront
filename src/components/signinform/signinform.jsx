@@ -43,8 +43,8 @@ function SigninForm() {
     const pseudo = formValues.pseudo
     const password = formValues.password;
 
-    // const url = 'https://bibloback.fly.dev/users/sign_in'
-    const url = 'http://localhost:3000/users/sign_in'
+    // const url = 'http://localhost:3000/users/sign_in'
+    const url = 'https://bibloback.fly.dev/users/sign_in'
 
     try {
       const response = await fetch(url, {

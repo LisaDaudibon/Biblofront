@@ -19,8 +19,8 @@ function Getmember() {
     const getprofile = async () => {
       try {
 
-        // const url = 'https://bibloback.fly.dev/member-data'
-        const url = 'http://localhost:3000/member-data'
+        // const url = 'http://localhost:3000/member-data'
+        const url = 'https://bibloback.fly.dev/member-data'
 
         const response = await fetch(url, {
           method: 'GET',
