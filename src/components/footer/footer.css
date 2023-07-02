@@ -36,7 +36,7 @@
   height: auto;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .footer-links a span {
     display: none;
   }

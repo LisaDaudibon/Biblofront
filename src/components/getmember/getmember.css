@@ -1,19 +1,21 @@
-
-#profile-container{
+#profile-container {
   display: grid;
   /* grid-template-columns: repeat(2, 1fr); */
   grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
   padding: 0 50px;
   margin: 0 50px;
+}
 
-  @media (max-width: 767px) {
+@media screen and (max-width: 767px) {
+  #profile-container {
     gap: 50px;
   }
+}
 
-  /* Styles for screens with two columns or more */
-  @media (min-width: 768px) {
+/* Styles for screens with two columns or more */
+@media screen and (min-width: 768px) {
+  #profile-container {
     gap: 50px;
-
   }
 }
 
@@ -28,13 +30,17 @@
   box-shadow: 10px 5px #3d3d3d;
   border-radius: 25px;
   margin-top: 20px;
+}
 
-  @media (min-width: 767px) {
+@media screen and (min-width: 767px) {
+  .profilecard {
     margin-bottom: 20px;
   }
+}
 
-  /* Styles for screens with two columns or more */
-  @media (max-width: 768px) {
+/* Styles for screens with two columns or more */
+@media screen and (max-width: 768px) {
+  .profilecard {
     margin-bottom: 100px;
   }
 }
