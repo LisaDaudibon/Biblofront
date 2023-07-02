@@ -6,15 +6,15 @@ import { userIdAtom } from '../../atoms/userIdAtom';
 import './signinstyle.css';
 
 function SigninForm() {
-  const setUsertoken = useSetAtom(userTokenAtom);
-  const setUserid = useSetAtom(userIdAtom)
+  const setUserToken = useSetAtom(userTokenAtom);
+  const setUserId = useSetAtom(userIdAtom)
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "" };
   const [formValues, setFormValues] = useState(InitialValues);
   const [formErrors] = useState({})
-  const [, setisSubmit] = useState(false)
+  const [, setIsSubmit] = useState(false)
 
   const handleChange = (event) =>{
     const { id, value } = event.target
@@ -27,7 +27,7 @@ function SigninForm() {
 
   useEffect(() => {
     console.log(formErrors)
-    if (Object.keys(formErrors).length === 0 && setisSubmit){
+    if (Object.keys(formErrors).length === 0 && setIsSubmit){
       console.log(formValues)
     }
 
@@ -37,7 +37,7 @@ function SigninForm() {
     event.preventDefault();
     setError('');
     setSuccess('');
-    setisSubmit(true)
+    setIsSubmit(true)
 
     const email = formValues.email;
     const pseudo = formValues.pseudo
@@ -63,9 +63,9 @@ function SigninForm() {
 
       if (response.ok) {
         const token = await response.headers.get("Authorization");
-        setUsertoken(token);
+        setUserToken(token);
         const responseData = await response.json();
-        setUserid(responseData.user.id);
+        setUserId(responseData.user.id);
 
        setSuccess('Login avec succès!'); // Set success flash message
       } else {

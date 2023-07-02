@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import '../signinform/signinstyle.css';
 
 function SignupForm () {
-  const setUsertoken = useSetAtom(userTokenAtom);
-  const setUserid = useSetAtom(userIdAtom)
+  const setUserToken = useSetAtom(userTokenAtom);
+  const setUserId = useSetAtom(userIdAtom)
   const [error, setError] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "", password_confirmation:""};
@@ -39,7 +39,7 @@ function SignupForm () {
     const url = 'https://bibloback.fly.dev/member-datas'
     // const url = 'http://localhost:3000/member-datas'
 
-    const getalluserspseudo = async () => {
+    const getAllUsersPseudo = async () => {
       try {
         const response = await fetch(url, {
           method: 'GET',
@@ -61,7 +61,7 @@ function SignupForm () {
         setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");
       }
     };
-    getalluserspseudo();
+    getAllUsersPseudo();
   }, []);
 
   const validates = (values) => {
@@ -118,9 +118,9 @@ function SignupForm () {
 
       if (response.ok) {
         const token = await response.headers.get("Authorization");
-        setUsertoken(token);
+        setUserToken(token);
         const responseData = await response.json();
-        setUserid(responseData.user.id);
+        setUserId(responseData.user.id);
       }
     } catch (error) {
       setError("Le serveur n'est pas accessible pour le moment, veuillez essayer dans quelques instants !");

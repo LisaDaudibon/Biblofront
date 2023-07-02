@@ -23,11 +23,11 @@ const AddToReadingItem = () => {
   const bookPublishedDate = useAtomValue(bookPublishedAtom);
   const bookPages = useAtomValue(bookPagesAtom);
   const bookCategory = useAtomValue(bookCategoryAtom);
-  const userid = useAtomValue(userIdAtom);
+  const userId = useAtomValue(userIdAtom);
   const bookId = useAtomValue(bookIdAtom);
-  const setbookId = useSetAtom(bookIdAtom);
-  const bookcount = useAtomValue(bookCountAtom);
-  const setbookCount = useSetAtom(bookCountAtom);
+  const setBookId = useSetAtom(bookIdAtom);
+  const bookCount = useAtomValue(bookCountAtom);
+  const setBookCount = useSetAtom(bookCountAtom);
   const loggedIn = useAtomValue(loggedInAtom)
 
   const [bookData, setBookData] = useState({ titles: [], ids: [] });
@@ -35,8 +35,6 @@ const AddToReadingItem = () => {
   const [success, setSuccess] = useState('');
   const isFirstRender = useRef(true);
   const [loading, setLoading] = useState(false);
-  const [books, setBooks] = useState({ ids: [] })
-
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -79,8 +77,8 @@ const AddToReadingItem = () => {
   }, [bookTitle]);
 
   useEffect(() => {
-    getBookId(bookData, bookTitle, setbookId);
-  }, [bookData, bookTitle, setbookId, books]);
+    getBookId(bookData, bookTitle, setBookId);
+  }, [bookData, bookTitle, setBookId]);
 
   const createReadingItem = async () => {
 
@@ -96,8 +94,8 @@ const AddToReadingItem = () => {
         body: JSON.stringify({
           reading_item: {
             read: false,
-            book_id: bookId === null ? bookcount : bookId,
-            reading_list_id: userid,
+            book_id: bookId === null ? bookCount : bookId,
+            reading_list_id: userId,
           },
         }),
       });
@@ -119,10 +117,8 @@ const AddToReadingItem = () => {
     setError('');
     setSuccess('');
 
-
-
     if (bookId === null) {
-      setbookCount((prevCount) => prevCount + 1);
+      setBookCount((prevCount) => prevCount + 1);
     }
 
     // const url = 'http://localhost:3000/books
@@ -149,8 +145,8 @@ const AddToReadingItem = () => {
 
         if (bookResponse.ok) {
           // const bookData = await bookResponse.json();
-          const newBookId = bookcount;
-          setbookId(newBookId);
+          const newBookId = bookCount;
+          setBookId(newBookId);
           setSuccess('Livre enregistré')
           createReadingItem(); // Create reading item after book is saved
         } else {

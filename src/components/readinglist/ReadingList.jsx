@@ -10,12 +10,12 @@ const ReadingList = () => {
   const userId = useAtomValue(userIdAtom);
   const [ books, setBooks ] = useState([]);
   const isFirstRender = useRef(true);
-  const [isBookDeleted, setIsBookDeleted] = useState(false);
+  const [ , setIsBookDeleted] = useState(false);
 
-  const [ error, setError ] = useState('')
+  const [ , setError ] = useState('')
 
   useEffect(() => {
-    const fetchReadinglist = async () => {
+    const fetchReadingList = async () => {
       try {
         if (!loggedIn || !userId) {
           setBooks([]);
@@ -57,7 +57,7 @@ const ReadingList = () => {
       return;
     }
 
-    fetchReadinglist();
+    fetchReadingList();
   }, [loggedIn, userId]);
 
 
