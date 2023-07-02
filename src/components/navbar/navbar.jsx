@@ -28,16 +28,20 @@ const Navbar = () => {
                   <FontAwesomeIcon icon={faBookBookmark} className="icon" title="Books" />
                   <span>Books</span>
                 </Link>
+                <Link to="/about" className="menuLink">
+                  <FontAwesomeIcon icon={faEnvelope} className="icon" title="Contact" />
+                  <span>Notre projet</span>
+                </Link>
                 {loggedIn ? (
                   <>
                     <Link to="/profile" className="menuLink">
                       <FontAwesomeIcon icon={faUser} className="icon" title="Profile" />
                       <span>Profile</span>
                     </Link>
-                    <Link to="/about" className="menuLink">
+                    {/* <Link to="/about" className="menuLink">
                       <FontAwesomeIcon icon={faEnvelope} className="icon" title="Contact" />
                       <span>Contact</span>
-                    </Link>
+                    </Link> */}
                     <div className="logoutWrapper">
                       <Logout />
                     </div>
@@ -61,16 +65,20 @@ const Navbar = () => {
                   <FontAwesomeIcon icon={faBookBookmark} className="icon" />
                   <span>Books</span>
                 </Link>
+                <Link to="/about" className="menuLink">
+                  <FontAwesomeIcon icon={faEnvelope} className="icon" title="Contact" />
+                  <span>Notre projet</span>
+                </Link>
                 {loggedIn ? (
                   <>
                     <Link to="/profile" className="menuLink" title="Profile">
                       <FontAwesomeIcon icon={faUser} className="icon" />
                       <span>Profile</span>
                     </Link>
-                    <Link to="/about" className="menuLink" title="Contact">
+                    {/* <Link to="/about" className="menuLink" title="Contact">
                       <FontAwesomeIcon icon={faEnvelope} className="icon" />
                       <span>Contact</span>
-                    </Link>
+                    </Link> */}
                     <div className="logoutWrapper">
                       <Logout />
                     </div>

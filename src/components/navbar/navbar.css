@@ -32,26 +32,22 @@
   padding: 10px;
   display: flex;
   align-items: center;
-  
 }
 
 .navbar-list li a:hover {
   background-color: #555;
   border-radius: 10px;
-  
 }
 
 .navbar-list button {
   margin-top: 5px;
+  margin-right: 5px;
   background-color: darkred;
   font-size: 13px;
   height: 40px;
   width: 45px;
   padding:0;
-
-  
 }
-
 
 .logo-container {
   display: flex;
@@ -93,12 +89,10 @@
   .iconContainer {
     justify-content: center; /* Center the icons when logo and logo name disappear */
   }
-  
+
   .logoContainer {
     display: none; /* Hide the logo container on smaller devices */
   } /* Center the icons when logo and logo name disappear */
-  
-  
 }
 
 .iconContainer:hover .menuLink {
@@ -118,7 +112,7 @@
 .menuLink:hover .icon {
     color: rgb(186, 124, 30);
   }
-  
+
 .menuListItem {
   flex: 4;
   display: flex;

@@ -46,6 +46,7 @@ const AddToReadingItem = () => {
 
     setLoading(true);
     const getBookDatabase = async () => {
+
       // const url = 'http://localhost:3000/books'
       const url = 'https://bibloback.fly.dev/books'
 
@@ -82,6 +83,7 @@ const AddToReadingItem = () => {
   }, [bookData, bookTitle, setbookId, books]);
 
   const createReadingItem = async () => {
+
     // const url = 'http://localhost:3000/reading_items'
     const url = 'https://bibloback.fly.dev/reading_items'
 
@@ -123,6 +125,7 @@ const AddToReadingItem = () => {
       setbookCount((prevCount) => prevCount + 1);
     }
 
+    // const url = 'http://localhost:3000/books
     const url = 'https://bibloback.fly.dev/books'
 
     if (bookId === null) {
