@@ -1,23 +1,27 @@
-@media (max-width: 250px) {
+/* Media Query for small screens */
+@media screen and (max-width: 250px) {
   .card {
     padding: 25px; /* Reduce padding on small screens */
     max-height: 70vh; /* Limit the card's height to 70% of the viewport height */
   }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+/* Media Query for medium screens */
+@media screen and (min-width: 577px) and (max-width: 768px) {
   .card {
     max-width: 600px; /* Adjust max width for medium screens */
   }
 }
 
-@media (min-width: 769px) and (max-width: 992px) {
+/* Media Query for large screens */
+@media screen and (min-width: 769px) and (max-width: 992px) {
   .card {
     max-width: 900px; /* Adjust max width for large screens */
   }
 }
 
-@media (min-width: 993px) {
+/* Media Query for extra-large screens */
+@media screen and (min-width: 993px) {
   .card {
     max-width: 1200px; /* Adjust max width for extra-large screens */
   }

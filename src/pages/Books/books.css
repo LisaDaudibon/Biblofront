@@ -17,11 +17,12 @@
   margin-top: 25px;
   margin-bottom: 90px;
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    margin-left: 25px;
-    padding: 0;
-  }
+  @media screen and (max-width: 768px) {
+    .books-container {
+      grid-template-columns: repeat(2, 1fr);
+      margin-left: 25px;
+      padding: 0;
+    }
 }
 
 .books-card img {

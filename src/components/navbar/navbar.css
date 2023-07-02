@@ -80,9 +80,9 @@
   margin-right: 5px; /* Adjust the spacing between the icon and the link text */
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .navbar-list {
-    justify-content: center; /* Center the small icons on a phone device */
+    justify-content: center;
   }
   
   .menuLink span {

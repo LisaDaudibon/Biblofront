@@ -23,3 +23,16 @@
   width: 30em;
   border: none;
 }
+
+@media screen and (max-width: 600px) {
+  .signinform {
+    max-width: 90%;
+    margin-top: 80px;
+    margin-bottom: 60px;
+  }
+
+  #pseudo, #email, #password, #password_confirmation {
+    width: 100%;
+    max-width: 100%;
+  }
+}
