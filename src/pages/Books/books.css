@@ -16,13 +16,14 @@
   gap: 50px;
   margin-top: 25px;
   margin-bottom: 90px;
+}
 
-  @media screen and (max-width: 768px) {
-    .books-container {
-      grid-template-columns: repeat(2, 1fr);
-      margin-left: 25px;
-      padding: 0;
-    }
+@media (max-width: 768px) {
+  .books-container {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 25px;
+    padding: 0;
+  }
 }
 
 .books-card img {
