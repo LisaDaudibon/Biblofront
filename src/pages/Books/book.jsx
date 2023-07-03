@@ -29,7 +29,7 @@ const BookDetails = ({ book, onCloseDetails }) => {
       setBookCategory(book.volumeInfo.categories && book.volumeInfo.categories[0] || "Autre");
     };
 
-    const getcount = async () => {
+    const getCount = async () => {
       try {
 
         const url = 'https://bibloback.fly.dev/books'
@@ -54,7 +54,7 @@ const BookDetails = ({ book, onCloseDetails }) => {
       }
     };
     if (loggedIn) {
-    getcount() }
+    getCount() }
 
     setBookInfo(book);
   }, [ bookTitle, bookAuthor, bookPublishedDate, bookPages, bookCategory, bookCount, loggedIn ]);

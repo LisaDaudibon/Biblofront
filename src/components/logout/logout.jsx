@@ -6,17 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 
 function Logout() {
-  const setUsertoken = useSetAtom(userTokenAtom);
-  const setUserid = useSetAtom(userIdAtom);
+  const setUserToken = useSetAtom(userTokenAtom);
+  const setUserId = useSetAtom(userIdAtom);
 
-  const HandleLogout = () => {
-    setUsertoken(null);
-    setUserid(null);
+  const handleLogout = () => {
+    setUserToken(null);
+    setUserId(null);
   };
 
   return (
     <div>
-      <button href="/home" onClick={HandleLogout}>
+      <button href="/home" onClick={handleLogout}>
         <FontAwesomeIcon icon={faSignOut} className="icon" title="Logout" />
       </button>
     </div>

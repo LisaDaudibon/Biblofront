@@ -7,16 +7,16 @@ import Logout from '../logout/logout';
 import './getmember.css';
 
 function Getmember() {
-  const usertoken = useAtomValue(userTokenAtom);
+  const userToken = useAtomValue(userTokenAtom);
   const loggedIn = useAtomValue(loggedInAtom);
-  const [profilemail, setProfilemail] = useState("");
-  const [profilpseudo, setProfilpseudo] = useState("");
-  const [profilpassword, setProfilpassword] = useState("");
+  const [profileEmail, setProfilEmail] = useState("");
+  const [profilePseudo, setProfilPseudo] = useState("");
+  const [profilePassword, setProfilPassword] = useState("");
   const [error, setError] = useState('');
 
   useEffect(() => {
     setError ('');
-    const getprofile = async () => {
+    const getProfile = async () => {
       try {
 
         // const url = 'http://localhost:3000/member-data'
@@ -25,25 +25,25 @@ function Getmember() {
         const response = await fetch(url, {
           method: 'GET',
           headers: {
-          "Authorization": `${usertoken}`,
+          "Authorization": `${userToken}`,
           "Content-Type": "application/json",
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setProfilemail(data.user.email)
-          setProfilpseudo(data.user.pseudo);
-          setProfilpassword(data.user.password)
+          setProfilEmail(data.user.email)
+          setProfilPseudo(data.user.pseudo);
+          setProfilPassword(data.user.password)
         }
       } catch (error) {
         setError("Le serveur est indisponible pour l'instant, veuillez essayer dans quelques instants ! ");
       }
     };
     if (loggedIn) {
-    getprofile()} // Call the profile function to fetch the data
+    getProfile()} // Call the profile function to fetch the data
 
-  }, [usertoken, profilemail]);
+  }, [userToken, profileEmail]);
 
 
   return (
@@ -52,13 +52,13 @@ function Getmember() {
       <div id="profile-container">
         <div className="profilecard">
           {error && <p>{error}</p>}
-          <h2 id="profilecardtitle">Hello {profilpseudo} </h2>
+          <h2 id="profilecardtitle">Hello {profilePseudo} </h2>
           <div id="profilecardinfo">
-            Email : {profilemail}
+            Email : {profileEmail}
             <br></br><br></br>
-            Pseudo : {profilpseudo}
+            Pseudo : {profilePseudo}
             <br></br><br></br>
-            Password : {profilpassword} ******
+            Password : {profilePassword} ******
             <br></br>
             <br></br>
             <span> Dans le cadre du RGPD, si tu souhaites supprimer ou </span><br></br>
