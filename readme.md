@@ -1,6 +1,8 @@
 # Projet Bibliophilea
 ### Projet final pour The Hacking Project
 
+### Cette branche représente l'avancé du projet lors de notre présentation devant le jury final !
+
 ## Découpage du projet
 Le front a été créé avec Vite et utilise React et Javascript. Le back a été créé en utilisant Rails. <br>
 <br>
