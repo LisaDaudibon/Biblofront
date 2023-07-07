@@ -21,8 +21,6 @@ function SignupForm () {
   const handleChange = (event) =>{
     const { id, value } = event.target
     setFormValues({...formValues, [id] : value })
-
-    console.log(formValues)
   }
 
   useEffect(() => {
