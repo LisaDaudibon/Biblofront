@@ -21,19 +21,12 @@ function SignupForm () {
   const handleChange = (event) =>{
     const { id, value } = event.target
     setFormValues({...formValues, [id] : value })
-
-    console.log(formValues)
   }
 
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
-    }
-
-    console.log(formErrors)
-    if (Object.keys(formErrors).length === 0 && setisSubmit){
-      console.log(formValues)
     }
 
     const url = 'https://bibloback.fly.dev/member-datas'
@@ -112,6 +105,7 @@ function SignupForm () {
             pseudo: pseudo,
             password: password,
             password_confirmation: password_confirmation,
+            admin: false
           }
         }),
       });
