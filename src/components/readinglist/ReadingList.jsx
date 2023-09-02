@@ -63,8 +63,8 @@ const ReadingList = () => {
   const handleClick = async (event, bookId) => {
     event.preventDefault();
 
-    const url = `http://localhost:3000/reading_lists/${userId}/remove_book/${bookId}`;
-    // const url = `https://bibloback.fly.dev/reading_lists/${userId}/remove_book/${bookId}`;
+    // const url = `http://localhost:3000/reading_lists/${userId}/remove_book/${bookId}`;
+    const url = `https://bibloback.fly.dev/reading_lists/${userId}/remove_book/${bookId}`;
 
     try {
       const deletebook = await fetch(url, {

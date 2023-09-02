@@ -29,11 +29,6 @@ function SignupForm () {
       return;
     }
 
-    // console.log(formErrors)
-    // if (Object.keys(formErrors).length === 0 && setisSubmit){
-    //   console.log(formValues)
-    // }
-
     const url = 'https://bibloback.fly.dev/member-datas'
     // const url = 'http://localhost:3000/member-datas'
 
@@ -110,6 +105,7 @@ function SignupForm () {
             pseudo: pseudo,
             password: password,
             password_confirmation: password_confirmation,
+            admin: false
           }
         }),
       });
