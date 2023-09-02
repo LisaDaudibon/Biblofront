@@ -45,7 +45,6 @@ function Getmember() {
 
   }, [userToken, profileEmail]);
 
-
   return (
     <div id="getmembercontainer">
       <h1 className="profiletitle">Mon profil</h1>

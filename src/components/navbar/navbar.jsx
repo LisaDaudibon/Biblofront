@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { loggedInAtom } from '../../atoms/loggedInAtom';
 import Logo from './logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookBookmark, faUser, faEnvelope, faHome, faSignOut, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBookBookmark, faUser, faEnvelope, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const loggedIn = useAtomValue(loggedInAtom);

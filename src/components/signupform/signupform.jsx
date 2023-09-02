@@ -8,7 +8,7 @@ import '../signinform/signinstyle.css';
 function SignupForm () {
   const setUserToken = useSetAtom(userTokenAtom);
   const setUserId = useSetAtom(userIdAtom)
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "", password_confirmation:""};
   const [formValues, setFormValues] = useState(InitialValues);
@@ -21,8 +21,6 @@ function SignupForm () {
   const handleChange = (event) =>{
     const { id, value } = event.target
     setFormValues({...formValues, [id] : value })
-
-    console.log(formValues)
   }
 
   useEffect(() => {
@@ -31,10 +29,10 @@ function SignupForm () {
       return;
     }
 
-    console.log(formErrors)
-    if (Object.keys(formErrors).length === 0 && setisSubmit){
-      console.log(formValues)
-    }
+    // console.log(formErrors)
+    // if (Object.keys(formErrors).length === 0 && setisSubmit){
+    //   console.log(formValues)
+    // }
 
     const url = 'https://bibloback.fly.dev/member-datas'
     // const url = 'http://localhost:3000/member-datas'
@@ -127,8 +125,6 @@ function SignupForm () {
     }
     // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
-
-  console.log(error)
 
   return (
     <form className="signinform" onSubmit={handleSubmit}>
