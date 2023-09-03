@@ -171,15 +171,16 @@ const AddToReadingItem = () => {
     <div>
       { loggedIn ? (
         <>
-      <button className="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
-        {loading ? 'Loading...' : 'Ajouter'}
-      </button>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
-      {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}</>
+          <button className="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
+            {loading ? 'Loading...' : 'Ajouter'}
+          </button>
+          {error && <p>{error}</p>}
+          {success && <p>{success}</p>}
+          {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}
+        </>
       ) : (
         <>
-        <Link to="/users/sign_in" role="button" className="addtori button">Ajouter</Link>
+          <Link to="/users/sign_in" role="button" className="addtori button">Ajouter</Link>
         </>
       )}
     </div>

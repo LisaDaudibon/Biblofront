@@ -28,7 +28,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-group">
-            
+
             <div className="footer-links">
               <ul>
                 <div className='footer-logo'>
@@ -60,6 +60,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+
             {showTeamPopup && <TeamPopup onClose={toggleTeamPopup} />}
           </div>
         </div>

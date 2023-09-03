@@ -8,7 +8,7 @@ import '../signinform/signinstyle.css';
 function SignupForm () {
   const setUserToken = useSetAtom(userTokenAtom);
   const setUserId = useSetAtom(userIdAtom)
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
 
   const InitialValues = { email: "",  pseudo: "", password: "", password_confirmation:""};
   const [formValues, setFormValues] = useState(InitialValues);
@@ -121,8 +121,6 @@ function SignupForm () {
     }
     // <disconnectUser /> aller chercher le code dans la branche getmembers, code à retravailler
   };
-
-  console.log(error)
 
   return (
     <form className="signinform" onSubmit={handleSubmit}>

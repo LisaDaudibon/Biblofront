@@ -4,7 +4,6 @@ import { loggedInAtom } from '../../atoms/loggedInAtom';
 import { userIdAtom } from '../../atoms/userIdAtom';
 import '../../pages/Books/books.css'
 
-
 const ReadingList = () => {
   const loggedIn = useAtomValue(loggedInAtom);
   const userId = useAtomValue(userIdAtom);

@@ -31,7 +31,6 @@ const BookDetails = ({ book, onCloseDetails }) => {
 
     const getCount = async () => {
       try {
-
         const url = 'https://bibloback.fly.dev/books'
         // const url = 'http://localhost:3000/books'
 
@@ -65,20 +64,34 @@ const BookDetails = ({ book, onCloseDetails }) => {
         <div id="booktitlebox">
           <h3 id="booktitle">{bookTitle}</h3>
           <AddToReadingItem />
-          <button id="book-close" onClick={onCloseDetails}>X</button></div>
-          {book.volumeInfo.imageLinks && (
-            <img src={book.volumeInfo.imageLinks.thumbnail} alt={bookTitle} />
-          )}
-          <p><strong>Auteur: </strong>{book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}</p>
-          <p className="book-infos">{book.volumeInfo.description}</p>
-          {book.volumeInfo.pageCount && (
-            <p className="book-infos">Pages: {book.volumeInfo.pageCount}</p>
-          )}
-          {book.volumeInfo.publishedDate && (
-            <p className="book-infos">Publication: {book.volumeInfo.publishedDate}</p>
-          )}
+          <button id="book-close" onClick={onCloseDetails}>
+            X
+          </button>
+        </div>
+
+        {book.volumeInfo.imageLinks && (
+          <img src={book.volumeInfo.imageLinks.thumbnail} alt={bookTitle} />
+        )}
+        <p><strong>Auteur: </strong>
+          {book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}
+        </p>
+        <p className="book-infos">
+          {book.volumeInfo.description}
+        </p>
+        {book.volumeInfo.pageCount && (
+          <p className="book-infos">
+            Pages: {book.volumeInfo.pageCount}
+          </p>
+        )}
+        {book.volumeInfo.publishedDate && (
+          <p className="book-infos">
+            Publication: {book.volumeInfo.publishedDate}
+          </p>
+        )}
         {book.volumeInfo.categories &&(
-          <p className="book-infos">Genre: {book.volumeInfo.categories}</p>
+          <p className="book-infos">
+            Genre: {book.volumeInfo.categories}
+          </p>
         )}
       </div>
     </div>

@@ -6,7 +6,6 @@ import { useSetAtom } from 'jotai';
 import { bookIdAtom } from '../../atoms/bookIdAtom';
 import { bookTitleAtom, bookPublishedAtom, bookAuthorAtom, bookCategoryAtom, bookPagesAtom, bookCountAtom } from '../../atoms/bookAtom';
 
-
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
