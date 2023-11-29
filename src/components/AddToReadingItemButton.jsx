@@ -163,20 +163,19 @@ const AddToReadingItem = () => {
     }
   };
 
-  const isBookInReadingList = () => {
-    return bookId !== null && bookData.ids.includes(bookId);
-  };
+  // const isBookInReadingList = () => {
+  //   return bookId !== null && bookData.ids.includes(bookId);
+  // };
 
   return (
     <div>
       { loggedIn ? (
         <>
-          <button className="addtori" onClick={onClick} disabled={loading || isBookInReadingList(bookId)}>
+          <button className="addtori" onClick={onClick} disabled={loading}>
             {loading ? 'Loading...' : 'Ajouter'}
           </button>
           {error && <p>{error}</p>}
           {success && <p>{success}</p>}
-          {isBookInReadingList() && <p>Ce livre est déjà dans votre liste de lecture !</p>}
         </>
       ) : (
         <>
